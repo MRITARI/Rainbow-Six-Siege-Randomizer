@@ -45,7 +45,7 @@ namespace r6random
             this.Icon = new Icon("rainbow-six-siege-logo-png_seeklogo-325646.ico");
             LoadHelpText();
             RegisterHotKey(this.Handle, HOTKEY_ID, 0x0002 | 0x0001, (uint)Keys.R);
-            this.KeyPreview = true; // allows the form to capture key presses
+            this.KeyPreview = true; 
             Btn_Attackers.ForeColor = Color.Tomato;
             Btn_Attackers.BackColor = Color.FromArgb(20, 20, 20);
             Btn_Defenders.BackColor = Color.FromArgb(20, 20, 20);
@@ -56,7 +56,7 @@ namespace r6random
             richTextBox1.BackColor = Color.FromArgb(20, 20, 20);
             textBox1.BackColor = Color.FromArgb(20, 20, 20);
 
-            // Load operators from JSON
+            
             if (File.Exists("operators.json"))
             {
                 var json = File.ReadAllText("operators.json");
@@ -73,7 +73,7 @@ namespace r6random
         {
             if (_form2 == null || _form2.IsDisposed)
             {
-                _form2 = new Form2(_operators); // pass shared list
+                _form2 = new Form2(_operators); 
                 _form2.Show();
             }
             else
@@ -94,10 +94,10 @@ namespace r6random
                 ? enabledOperators.Where(op => op.Role == "Attacker").ToList()
                 : enabledOperators.Where(op => op.Role == "Defender").ToList();
 
-            // choose correct randomized list
+            
             var randomizedList = attackers ? randomizedAttackers : randomizedDefenders;
             label1.Text = $"Randomized: {randomizedList.Count}";
-            // check if all randomized
+           
             if (randomizedList.Count >= enabledOperators.Count)
             {
                 MessageBox.Show("All enabled operators have been randomized.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -106,7 +106,7 @@ namespace r6random
 
             OperatorInfo randomOperator;
 
-            // reroll until not in the list
+            
             do
             {
                 randomOperator = enabledOperators[_random.Next(enabledOperators.Count)];
@@ -114,11 +114,11 @@ namespace r6random
 
             randomizedList.Add(randomOperator);
 
-            // update labels
+          
             label1.Text = $"Randomized: {randomizedList.Count}";
             label2.Text = $"Last: {randomOperator.Name}";
 
-            // display image
+            
             if (File.Exists(randomOperator.ImagePath))
             {
                 pictureBox1.Image = Image.FromFile(randomOperator.ImagePath);
@@ -185,7 +185,7 @@ namespace r6random
 
         private void Btn_Help_Click(object sender, EventArgs e)
         {
-            // Toggle help (textBox1)
+           
             help = !help;
             if (help)
             {
@@ -198,14 +198,14 @@ namespace r6random
                 Btn_Help.ForeColor = Color.DodgerBlue;
             }
         }
-        // Assuming you have a RichTextBox named richTextBox1
+        
         private void LoadHelpText()
         {
             richTextBox1.Clear();
             richTextBox1.ReadOnly = true;
             richTextBox1.ScrollBars = RichTextBoxScrollBars.Vertical;
 
-            // Define headers and body text
+            
             var helpSections = new[]
             {
         new { Header = "Rainbow Six Siege Randomizer – Help", SubHeader = "Overview", Body = "The R6 Randomizer app allows you to randomly select an operator for attackers or defenders in Rainbow Six Siege. You can enable or disable specific operators and view their icons in the settings." },
