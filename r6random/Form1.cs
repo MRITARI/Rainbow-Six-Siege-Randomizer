@@ -41,6 +41,7 @@ namespace r6random
         {
 
             InitializeComponent();
+            this.Text = "R6 Randomizer v1.0.0";
             this.Icon = new Icon("rainbow-six-siege-logo-png_seeklogo-325646.ico");
             LoadHelpText();
             RegisterHotKey(this.Handle, HOTKEY_ID, 0x0002 | 0x0001, (uint)Keys.R);

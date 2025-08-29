@@ -16,6 +16,7 @@ namespace r6random
         public Form2(List<OperatorInfo> operators)
         {
             InitializeComponent();
+            this.Text = "Select Operators";
             this.Icon = new Icon("rainbow-six-siege-logo-png_seeklogo-325646.ico");
             _operators = operators;
 
