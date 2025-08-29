@@ -11,7 +11,7 @@ namespace r6random
     {
         private List<OperatorInfo> _operators;
 
-        public List<OperatorInfo> Operators => _operators; 
+        public List<OperatorInfo> Operators => _operators; // expose to Form1
 
         public Form2(List<OperatorInfo> operators)
         {
@@ -20,13 +20,13 @@ namespace r6random
             this.Icon = new Icon("rainbow-six-siege-logo-png_seeklogo-325646.ico");
             _operators = operators;
 
-            
+            // Attach click handlers for all 75 picture boxes 
             for (int i = 1; i <= 75; i++)
             {
                 var pb = Controls.Find($"pictureBox_{i}", true).FirstOrDefault() as PictureBox;
                 if (pb != null)
                 {
-                    int idx = i - 1; 
+                    int idx = i - 1; // capture index
 
                     pb.Click += (s, e) =>
                     {
