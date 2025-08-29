@@ -17,7 +17,7 @@ namespace r6random
     {
 
 
-        private const int HOTKEY_ID = 9000;
+        private const int HOTKEY_ID = 9000; 
 
         [DllImport("user32.dll")]
         private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
