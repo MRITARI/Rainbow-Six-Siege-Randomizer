@@ -16,7 +16,7 @@ You can enable or disable specific operators and view their icons in the setting
 ## Screenshots
 
 ### Main Window
-![Main Window](images/ss1.png)
+![Main Window](images/ss.png)
 
 ### Settings Menu
 ![Settings Menu](images/ss2.png)
