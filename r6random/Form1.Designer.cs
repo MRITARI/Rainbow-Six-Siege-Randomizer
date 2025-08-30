@@ -173,7 +173,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(429, 20);
             this.textBox1.TabIndex = 10;
-            this.textBox1.Text = "By: MRITARI, Version: 1.0";
+            this.textBox1.Text = "By: MRITARI, Version: 1.1.0, Season: Y10S3";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form1

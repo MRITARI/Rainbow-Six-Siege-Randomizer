@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace r6random
 {
@@ -20,7 +21,6 @@ namespace r6random
             this.Icon = new Icon("rainbow-six-siege-logo-png_seeklogo-325646.ico");
             _operators = operators;
 
-            
             for (int i = 1; i <= 75; i++)
             {
                 var pb = Controls.Find($"pictureBox_{i}", true).FirstOrDefault() as PictureBox;
@@ -32,6 +32,7 @@ namespace r6random
                     {
                         _operators[idx].Enabled = !_operators[idx].Enabled;
                         pb.Invalidate();
+                        SaveOperatorStatesToConfig();
                     };
 
                     pb.Paint += (s, e) =>
@@ -65,6 +66,30 @@ namespace r6random
                     pb.BackColor = Color.Red;
 
                 pb.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+        }
+
+        private void SaveOperatorStatesToConfig()
+        {
+            var enabledNames = _operators.Where(op => op.Enabled).Select(op => op.Name);
+            string enabledList = string.Join(",", enabledNames);
+
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["EnabledOperators"].Value = enabledList;
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+        }
+
+        public static void LoadOperatorStatesFromConfig(List<OperatorInfo> operators)
+        {
+            string enabledList = ConfigurationManager.AppSettings["EnabledOperators"];
+            if (string.IsNullOrEmpty(enabledList))
+                return;
+
+            var enabledNames = new HashSet<string>(enabledList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
+            foreach (var op in operators)
+            {
+                op.Enabled = enabledNames.Contains(op.Name);
             }
         }
     }
