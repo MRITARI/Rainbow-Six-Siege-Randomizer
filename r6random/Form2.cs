@@ -18,7 +18,11 @@ namespace r6random
         {
             InitializeComponent();
             this.Text = "Select Operators";
-            this.Icon = new Icon("rainbow-six-siege-logo-png_seeklogo-325646.ico");
+            byte[] iconBytes = Properties.Resources.icon;
+            using (var ms = new MemoryStream(iconBytes))
+            {
+                this.Icon = new Icon(ms);
+            }
             _operators = operators;
 
             for (int i = 1; i <= 75; i++)

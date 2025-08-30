@@ -41,8 +41,15 @@ namespace r6random
         {
 
             InitializeComponent();
-            this.Text = "R6 Randomizer v1.1.0";
-            this.Icon = new Icon("rainbow-six-siege-logo-png_seeklogo-325646.ico");
+            this.Text = "R6 Randomizer v1.1.1";
+            byte[] iconBytes = Properties.Resources.icon;
+            using (var ms = new MemoryStream(iconBytes))
+            {
+                this.Icon = new Icon(ms);
+            }
+
+
+
             LoadHelpText();
             RegisterHotKey(this.Handle, HOTKEY_ID, 0x0002 | 0x0001, (uint)Keys.R);
             this.KeyPreview = true; 
@@ -57,9 +64,9 @@ namespace r6random
             textBox1.BackColor = Color.FromArgb(20, 20, 20);
 
             
-            if (File.Exists("operators.json"))
+            if (File.Exists("res/operators.json"))
             {
-                var json = File.ReadAllText("operators.json");
+                var json = File.ReadAllText("res/operators.json");
                 _operators = JsonConvert.DeserializeObject<List<OperatorInfo>>(json);
                 Form2.LoadOperatorStatesFromConfig(_operators);
             }

@@ -124,4 +124,7 @@
   <data name="907782" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\907782.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rainbow-six-siege-logo-png_seeklogo-325646.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
