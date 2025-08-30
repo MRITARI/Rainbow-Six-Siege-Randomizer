@@ -1,8 +1,25 @@
 # Rainbow Six Siege Randomizer
 
+## Downloads
+You can download the latest version of the **R6 Randomizer** app here:  
+- [Download Latest Release (ZIP)](https://github.com/mritari/Rainbow-Six-Siege-Randomizer/releases/latest/download/release.zip)  
+- [View All Releases](https://github.com/mritari/Rainbow-Six-Siege-Randomizer/releases)
+
+---
+
 ## Overview
 The **R6 Randomizer** app allows you to randomly select an operator for **Attackers** or **Defenders** in Rainbow Six Siege.  
 You can enable or disable specific operators and view their icons in the settings menu.
+
+---
+
+## Screenshots
+
+### Main Window
+![Main Window](images/ss1.png)
+
+### Settings Menu
+![Settings Menu](images/ss2.png)
 
 ---
 
