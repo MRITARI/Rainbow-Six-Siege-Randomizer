@@ -28,6 +28,7 @@ You can enable or disable specific operators and view their icons in the setting
 ### Randomize Button
 - Click **Randomize** to pick a random operator from the currently enabled list.
 - The selected operator’s image will appear in the main picture box.
+- Once an operator has been randomized, it will **not be selected again** until you reset the app.
 
 ### Attacker / Defender Toggle
 - Click **Attackers** or **Defenders** to choose which side the random operator should be selected from.
