@@ -386,6 +386,12 @@
     <Content Include="Res\Defenders\Clash_ICON.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Res\Defenders\Denari.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\Defenders\Denari_ICON.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Res\Defenders\Doc.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using System.Runtime.InteropServices;
-
-
 
 
 namespace r6random
@@ -15,15 +16,90 @@ namespace r6random
 
     public partial class Form1 : Form
     {
+        private const string GitHubRepoOwner = "MRITARI"; 
+        private const string GitHubRepoName = "Rainbow-Six-Siege-Randomizer"; 
+        private static readonly Version CurrentVersion = new Version("1.2.0"); 
+        private static readonly HttpClient client = new HttpClient();
+
+        private const int WH_KEYBOARD_LL = 13;
+        private const int WM_KEYDOWN = 0x0100;
+        private const int WM_SYSKEYDOWN = 0x0104;
+        private IntPtr _hookID = IntPtr.Zero;
+
+        public delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
+        private LowLevelKeyboardProc _proc;
 
 
-        private const int HOTKEY_ID = 9000; 
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
 
         [DllImport("user32.dll")]
-        private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
+        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+        private const int GWL_EXSTYLE = -20;
+        private const int WS_EX_TRANSPARENT = 0x20;
+        private const int WS_EX_LAYERED = 0x80000;
+
+        private async Task CheckForUpdatesAsync()
+        {
+            try
+            {
+                
+                string url = $"https://api.github.com/repos/{GitHubRepoOwner}/{GitHubRepoName}/releases/latest";
+
+               
+                client.DefaultRequestHeaders.UserAgent.ParseAdd("C# App");
+
+                var response = await client.GetStringAsync(url);
+                dynamic releaseInfo = JsonConvert.DeserializeObject(response);
+
+                string latestTagName = releaseInfo.tag_name;
+                Version latestVersion = new Version(latestTagName.TrimStart('v', 'V')); 
+
+                if (latestVersion > CurrentVersion)
+                {
+                    MessageBox.Show(
+                        $"A new version ({latestVersion}) is available on GitHub!",
+                        "Update Available",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                
+                Debug.WriteLine($"Error checking for updates: {ex.Message}");
+            }
+        }
+        private void MakeClickThrough()
+        {
+            int style = GetWindowLong(this.Handle, GWL_EXSTYLE);
+            SetWindowLong(this.Handle, GWL_EXSTYLE, style | WS_EX_TRANSPARENT | WS_EX_LAYERED);
+        }
+
+        private void RemoveClickThrough()
+        {
+            int style = GetWindowLong(this.Handle, GWL_EXSTYLE);
+            SetWindowLong(this.Handle, GWL_EXSTYLE, style & ~WS_EX_TRANSPARENT);
+        }
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc lpfn, IntPtr hMod, uint dwThreadId);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool UnhookWindowsHookEx(IntPtr hhk);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr GetModuleHandle(string lpModuleName);
 
         [DllImport("user32.dll")]
-        private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+        public static extern short GetAsyncKeyState(Keys vKey);
+
 
         private List<OperatorInfo> _operators;
         private List<OperatorInfo> randomizedAttackers = new List<OperatorInfo>();
@@ -34,14 +110,32 @@ namespace r6random
         private Form2 _form2;
         bool attackers = true;
         bool help = false;
-        
+        string lastDefender = "";
+        string lastAttacker = "";
+        string defenderCount = "";
+        string attackerCount = "";
+
 
 
         public Form1()
         {
 
             InitializeComponent();
-            this.Text = "R6 Randomizer v1.1.1";
+            _ = CheckForUpdatesAsync();
+
+            // Remove borders and taskbar icon
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.ShowInTaskbar = false;
+
+            // Always stay on top
+            this.TopMost = true;
+
+            
+
+            this.Opacity = 0.9;
+
+
+            this.Text = "R6 Randomizer v1.2.0";
             byte[] iconBytes = Properties.Resources.icon;
             using (var ms = new MemoryStream(iconBytes))
             {
@@ -51,19 +145,25 @@ namespace r6random
 
 
             LoadHelpText();
-            RegisterHotKey(this.Handle, HOTKEY_ID, 0x0002 | 0x0001, (uint)Keys.R);
-            this.KeyPreview = true; 
+            _proc = HookCallback;
+            using (var process = Process.GetCurrentProcess())
+            using (var module = process.MainModule)
+            {
+                _hookID = SetWindowsHookEx(WH_KEYBOARD_LL, _proc, GetModuleHandle(module.ModuleName), 0);
+            }
+            this.KeyPreview = true;
             Btn_Attackers.ForeColor = Color.Tomato;
             Btn_Attackers.BackColor = Color.FromArgb(20, 20, 20);
             Btn_Defenders.BackColor = Color.FromArgb(20, 20, 20);
             Btn_Randomize.BackColor = Color.FromArgb(20, 20, 20);
             Btn_Settings.BackColor = Color.FromArgb(20, 20, 20);
+            closeBtn.BackColor = Color.FromArgb(20, 20, 20);
             ResetRandomized.BackColor = Color.FromArgb(20, 20, 20);
             Btn_Help.BackColor = Color.FromArgb(20, 20, 20);
             richTextBox1.BackColor = Color.FromArgb(20, 20, 20);
             textBox1.BackColor = Color.FromArgb(20, 20, 20);
 
-            
+
             if (File.Exists("res/operators.json"))
             {
                 var json = File.ReadAllText("res/operators.json");
@@ -81,7 +181,7 @@ namespace r6random
         {
             if (_form2 == null || _form2.IsDisposed)
             {
-                _form2 = new Form2(_operators); 
+                _form2 = new Form2(_operators);
                 _form2.Show();
             }
             else
@@ -95,17 +195,17 @@ namespace r6random
         private void Btn_Randomize_Click(object sender, EventArgs e)
         {
             if (_operators == null || _operators.Count == 0) return;
-            
+
 
             var enabledOperators = _operators.Where(op => op.Enabled).ToList();
             enabledOperators = attackers
                 ? enabledOperators.Where(op => op.Role == "Attacker").ToList()
                 : enabledOperators.Where(op => op.Role == "Defender").ToList();
 
-            
+
             var randomizedList = attackers ? randomizedAttackers : randomizedDefenders;
             label1.Text = $"Randomized: {randomizedList.Count}";
-           
+
             if (randomizedList.Count >= enabledOperators.Count)
             {
                 MessageBox.Show("All enabled operators have been randomized.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -114,7 +214,7 @@ namespace r6random
 
             OperatorInfo randomOperator;
 
-            
+
             do
             {
                 randomOperator = enabledOperators[_random.Next(enabledOperators.Count)];
@@ -122,11 +222,21 @@ namespace r6random
 
             randomizedList.Add(randomOperator);
 
-          
+
             label1.Text = $"Randomized: {randomizedList.Count}";
             label2.Text = $"Last: {randomOperator.Name}";
+            if (attackers)
+            {
+                lastAttacker = randomOperator.Name;
+                attackerCount = randomizedList.Count.ToString();
+            }
+            else
+            {
+                lastDefender = randomOperator.Name;
+                defenderCount = randomizedList.Count.ToString();
+            }
 
-            
+
             if (File.Exists(randomOperator.ImagePath))
             {
                 pictureBox1.Image = Image.FromFile(randomOperator.ImagePath);
@@ -141,6 +251,19 @@ namespace r6random
             attackers = true;
             Btn_Attackers.ForeColor = Color.Tomato;
             Btn_Defenders.ForeColor = Color.White;
+            label1.Text = $"Randomized: {randomizedAttackers.Count}";
+            label2.Text = $"Last: {lastAttacker}";
+
+            if (!string.IsNullOrEmpty(lastAttacker))
+            {
+                var lastOp = _operators.FirstOrDefault(op => op.Name == lastAttacker && op.Role == "Attacker");
+                if (lastOp != null && File.Exists(lastOp.ImagePath))
+                {
+                    pictureBox1.Image = Image.FromFile(lastOp.ImagePath);
+                    pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+            }
+
 
 
         }
@@ -150,6 +273,17 @@ namespace r6random
             attackers = false;
             Btn_Defenders.ForeColor = Color.Tomato;
             Btn_Attackers.ForeColor = Color.White;
+            label1.Text = $"Randomized: {randomizedDefenders.Count}";
+            label2.Text = $"Last: {lastDefender}";
+            if (!string.IsNullOrEmpty(lastDefender))
+            {
+                var lastOp = _operators.FirstOrDefault(op => op.Name == lastDefender && op.Role == "Defender");
+                if (lastOp != null && File.Exists(lastOp.ImagePath))
+                {
+                    pictureBox1.Image = Image.FromFile(lastOp.ImagePath);
+                    pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+            }
 
 
         }
@@ -158,42 +292,77 @@ namespace r6random
         {
             randomizedAttackers.Clear();
             randomizedDefenders.Clear();
+            lastAttacker = "";
+            lastDefender = "";
+            defenderCount = "";
+            attackerCount = "";
             label1.Text = $"Randomized: ";
             label2.Text = $"Last: ";
 
         }
-        protected override void WndProc(ref Message m)
+
+        private IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
-            const int WM_HOTKEY = 0x0312;
-            if (m.Msg == WM_HOTKEY && m.WParam.ToInt32() == HOTKEY_ID)
+            if (nCode >= 0 && (wParam == (IntPtr)WM_KEYDOWN || wParam == (IntPtr)WM_SYSKEYDOWN))
             {
-                ToggleMinimizeRestore();
+                int vkCode = Marshal.ReadInt32(lParam);
+                Keys key = (Keys)vkCode;
+
+                // Check for Shift + F5 key press
+                if (key == Keys.F5 && (GetAsyncKeyState(Keys.ShiftKey) & 0x8000) != 0)
+                {
+                    ToggleMinimizeRestore();
+                    return (IntPtr)1; // Indicate that we've processed the key
+                }
             }
-            base.WndProc(ref m);
+            return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }
 
         private void ToggleMinimizeRestore()
         {
-            if (this.WindowState == FormWindowState.Minimized)
+            if (!this.Visible)
             {
-                this.WindowState = FormWindowState.Normal; // restore
-                this.BringToFront();                        // bring on top
-                this.Activate();                             // focus
+                // Move to bottom-right corner
+                var screen = Screen.PrimaryScreen.WorkingArea;
+                this.Location = new Point(
+                    screen.Right - this.Width,
+                    screen.Top
+                );
+
+                this.Visible = true;
+                RemoveClickThrough(); // Make it interactable
+                this.Activate();
             }
             else
             {
-                this.WindowState = FormWindowState.Minimized; // minimize
+                MakeClickThrough(); // Prevent interactions
+                this.Visible = false;
             }
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            
+            var screen = Screen.PrimaryScreen.WorkingArea;
+            this.Location = new Point(
+                screen.Right - this.Width,
+                screen.Top
+            );
+
+            
+        }
+
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            UnregisterHotKey(this.Handle, HOTKEY_ID);
+            UnhookWindowsHookEx(_hookID);
         }
 
         private void Btn_Help_Click(object sender, EventArgs e)
         {
-           
+
             help = !help;
             if (help)
             {
@@ -206,25 +375,24 @@ namespace r6random
                 Btn_Help.ForeColor = Color.DodgerBlue;
             }
         }
-        
+
         private void LoadHelpText()
         {
             richTextBox1.Clear();
             richTextBox1.ReadOnly = true;
             richTextBox1.ScrollBars = RichTextBoxScrollBars.Vertical;
 
-            
+
             var helpSections = new[]
-            {
-        new { Header = "Rainbow Six Siege Randomizer – Help", SubHeader = "Overview", Body = "The R6 Randomizer app allows you to randomly select an operator for attackers or defenders in Rainbow Six Siege. You can enable or disable specific operators and view their icons in the settings." },
-        new { Header = "Main Features", SubHeader = "", Body = "" },
-        new { Header = "", SubHeader = "Randomize Button", Body = "Click Randomize to pick a random operator from the currently enabled list.\nThe selected operator’s image will appear in the main picture box." },
-        new { Header = "", SubHeader = "Attacker / Defender Toggle", Body = "Click Attackers or Defenders to choose which side the random operator should be selected from.\nOnly enabled operators from the chosen side will be included." },
-        new { Header = "", SubHeader = "Settings", Body = "Click Settings to open the operator list.\nEach operator has an icon (green border = enabled, red border = disabled).\nClick an operator icon to toggle whether it is included in randomization.\nYou can minimize or restore the settings window without losing changes." },
-        new { Header = "", SubHeader = "Global Hotkey", Body = "Press AltGr + R to minimize or restore the main app window while playing the game.\nWorks even if Rainbow Six Siege is running in fullscreen." },
-        new { Header = "", SubHeader = "Operator List", Body = "All operators are enabled by default. Disabled operators are skipped in randomization." },
-        new { Header = "", SubHeader = "Error Handling", Body = "No operators enabled: You must enable at least one operator in settings.\nImage not found: The app will warn you if the operator image is missing." },
-    };
+{
+                new { Header = "Rainbow Six Siege Randomizer – Help", SubHeader = "Overview", Body = "The R6 Randomizer is your go-to companion for Rainbow Six Siege, helping you pick an operator at random. It's a handy tool to keep your gameplay fresh and unpredictable." },
+                new { Header = "Key Features", SubHeader = "", Body = "" },
+                new { Header = "", SubHeader = "Randomize Button", Body = "Hit the Randomize button to get a random operator from your enabled list. The chosen operator's portrait and details will be displayed." },
+                new { Header = "", SubHeader = "Operator Management", Body = "Click 'Settings' to open the full operator roster. Every operator icon has a border to show its status: a **green** border means they're active in your pool, while a **red** border means they're disabled. Just click an icon to toggle its state. The changes save automatically." },
+                new { Header = "", SubHeader = "In-Game Overlay", Body = "Use the hotkey **Shift + F5** to toggle the app's visibility while in-game. This feature works best with Rainbow Six Siege running in **borderless** windowed mode, as it may not function reliably in exclusive fullscreen." },
+                new { Header = "", SubHeader = "Customizable Roster", Body = "By default, all operators are included in the randomization pool. You have full control to disable any operator you don't want to play." },
+                new { Header = "", SubHeader = "Troubleshooting", Body = "If you encounter an issue, like a missing operator image, the app will let you know. If the app can't find an image, the icon will have a red background. You also need to enable at least one operator for the randomizer to work." },
+            };
 
             foreach (var section in helpSections)
             {
@@ -263,9 +431,9 @@ namespace r6random
             richTextBox1.SelectionColor = richTextBox1.ForeColor;
         }
 
-
-
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
-

@@ -39,6 +39,7 @@
             this.Btn_Help = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.closeBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -173,8 +174,21 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(429, 20);
             this.textBox1.TabIndex = 10;
-            this.textBox1.Text = "By: MRITARI, Version: 1.1.1, Season: Y10S2";
+            this.textBox1.Text = "By: MRITARI, Version: 1.2.0, Season: Y10S3";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // closeBtn
+            // 
+            this.closeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeBtn.ForeColor = System.Drawing.Color.Red;
+            this.closeBtn.Location = new System.Drawing.Point(457, 1);
+            this.closeBtn.Name = "closeBtn";
+            this.closeBtn.Size = new System.Drawing.Size(27, 29);
+            this.closeBtn.TabIndex = 11;
+            this.closeBtn.Text = "X";
+            this.closeBtn.UseVisualStyleBackColor = true;
+            this.closeBtn.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -183,6 +197,7 @@
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.BackgroundImage = global::r6random.Properties.Resources._907782;
             this.ClientSize = new System.Drawing.Size(484, 561);
+            this.Controls.Add(this.closeBtn);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.Btn_Help);
@@ -217,6 +232,7 @@
         private System.Windows.Forms.Button Btn_Help;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button closeBtn;
     }
 }
 

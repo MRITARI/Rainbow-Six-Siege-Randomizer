@@ -25,7 +25,7 @@ namespace r6random
             }
             _operators = operators;
 
-            for (int i = 1; i <= 75; i++)
+            for (int i = 1; i <= 76; i++)
             {
                 var pb = Controls.Find($"pictureBox_{i}", true).FirstOrDefault() as PictureBox;
                 if (pb != null)
@@ -55,7 +55,7 @@ namespace r6random
 
         private void LoadOperatorIcons()
         {
-            for (int i = 0; i < _operators.Count && i < 75; i++)
+            for (int i = 0; i < _operators.Count && i < 76; i++)
             {
                 var pb = Controls.Find($"pictureBox_{i + 1}", true).FirstOrDefault() as PictureBox;
                 if (pb == null) continue;
