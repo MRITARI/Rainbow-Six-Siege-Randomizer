@@ -1,7 +1,4 @@
 # Rainbow Six Siege Randomizer
-
----
-
 ![banner](images/banner.png)
 
 ---
