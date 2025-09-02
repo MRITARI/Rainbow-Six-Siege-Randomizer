@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rainbow Six Siege Randomizer</title>
+<style>
+  body {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    text-align: center;
+    padding: 20px;
+  }
+  header img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+  .intro {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px 20px 30px 20px;
+    font-size: 1.1rem;
+  }
+  main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  details {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 15px;
+  }
+  summary {
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #58a6ff;
+    outline: none;
+  }
+  details[open] summary {
+    color: #1f6feb;
+  }
+  img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+  ul {
+    margin-left: 20px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="../images/banner.png" alt="Rainbow Six Siege Randomizer Banner">
+</header>
+
+<div class="intro">
+  <p>The <strong>R6 Randomizer</strong> is your go-to companion for Rainbow Six Siege, helping you pick a random operator for <strong>Attackers</strong> or <strong>Defenders</strong>.<br>
+  It’s a quick way to keep your gameplay fresh and unpredictable, with full control over which operators are included.</p>
+</div>
+
+<main>
+  <details open>
+    <summary>Downloads</summary>
+    <p><img src="https://img.shields.io/github/downloads/mritari/Rainbow-Six-Siege-Randomizer/total?style=for-the-badge"></p>
+    <p><a href="https://github.com/mritari/Rainbow-Six-Siege-Randomizer/releases/latest"><img src="https://img.shields.io/github/v/release/mritari/Rainbow-Six-Siege-Randomizer?style=for-the-badge"></a></p>
+    <p><a href="https://github.com/mritari/Rainbow-Six-Siege-Randomizer/releases"><img src="https://img.shields.io/badge/View%20All-Releases-blue?style=for-the-badge"></a></p>
+  </details>
+
+  <details>
+    <summary>Changelog</summary>
+    <h3>v1.2.0</h3>
+    <ul>
+      <li><strong>YEAR 10 SEASON 3 — Operation High Stakes</strong></li>
+      <li>Added new operator: <strong>Leon "Denari" Winzenried</strong></li>
+      <li>Transparent for an overlay-like look.</li>
+      <li>Updated hotkey logic (<code>Shift + F5</code> to toggle visibility).</li>
+      <li>Note: This is not a true game overlay like Discord, Steam, or NVIDIA Overlays.</li>
+      <li>Overlay now locks to the top-right corner of the screen.</li>
+      <li>Minor UI improvements and bug fixes.</li>
+    </ul>
+    <h3>v1.1.1</h3>
+    <ul>
+      <li>Minor changes</li>
+    </ul>
+    <h3>v1.1.0</h3>
+    <ul>
+      <li>Operators enabled/disabled state now saves automatically to a config file.</li>
+      <li>When reopening the app, previously selected operators are restored.</li>
+    </ul>
+    <h3>v1.0.0</h3>
+    <ul>
+      <li>Initial release.</li>
+      <li>Randomize operators for Attackers or Defenders.</li>
+      <li>Enable or disable operators in settings.</li>
+      <li>Prevents duplicate picks until reset.</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>Screenshots</summary>
+    <h3>Main Window</h3>
+    <img src="../images/ss.png" alt="Main Window">
+    <h3>Settings Menu</h3>
+    <img src="../images/ss2.png" alt="Settings Menu">
+  </details>
+
+  <details>
+    <summary>Key Features</summary>
+    <h3>Randomize Button</h3>
+    <ul>
+      <li>Click <strong>Randomize</strong> to select a random operator from your enabled list.</li>
+      <li>Displays the chosen operator’s portrait and details in the main window.</li>
+      <li>Prevents the same operator from being chosen again until you reset the app.</li>
+    </ul>
+
+    <h3>Operator Management</h3>
+    <ul>
+      <li>Click <strong>Settings</strong> to view the full operator roster.</li>
+      <li><strong>Green border</strong> = enabled, <strong>Red border</strong> = disabled.</li>
+      <li>Click an operator’s icon to toggle its status.</li>
+      <li>Changes are <strong>saved automatically</strong> and persist between launches.</li>
+    </ul>
+
+    <h3>In-Game Overlay</h3>
+    <ul>
+      <li><strong>Press <code>Shift + F5</code></strong> to toggle the app’s visibility while playing.</li>
+      <li>Designed to work best in <strong>borderless windowed mode</strong> — may not function in exclusive fullscreen.</li>
+      <li>Overlay stays in the top-right corner and can be hidden when not needed.</li>
+    </ul>
+
+    <h3>Customizable Roster</h3>
+    <ul>
+      <li>All operators are <strong>enabled by default</strong>.</li>
+      <li>Disable any operators you don’t want in the randomization pool.</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>Troubleshooting</summary>
+    <h3>No Operators Enabled</h3>
+    <p>You must enable at least one operator for the randomizer to work.</p>
+
+    <h3>Image Not Found</h3>
+    <p>Missing images are shown with a <strong>red background</strong> and a tooltip displaying the missing file path.</p>
+
+    <h3>Overlay Not Showing In-Game</h3>
+    <ul>
+      <li>Use <strong>borderless windowed mode</strong> for best results.</li>
+      <li>Ensure the hotkey doesn’t conflict with another application.</li>
+      <li>Some anti-cheat restrictions may prevent overlay display in exclusive fullscreen.</li>
+    </ul>
+  </details>
+</main>
+
+</body>
+</html>
