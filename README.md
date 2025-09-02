@@ -18,10 +18,10 @@
 ### v1.2.0
 - **YEAR 10 SEASON 3 — Operation High Stakes**
 - Added new operator: **Leon "Denari" Winzenried**
-- Window is positioned on top and made transparent for an overlay-like look.
+- Transparent for an overlay-like look.
 - Updated hotkey logic (`Shift + F5` to toggle visibility).
 - Note: This is not a true game overlay like Discord, Steam, or NVIDIA Overlays.
-- Overlay now starts hidden and locks to the top-right corner of the screen.
+- Overlay now locks to the top-right corner of the screen.
 - Minor UI improvements and bug fixes.
 
 ### v1.1.1
