@@ -1,61 +1,99 @@
 # Rainbow Six Siege Randomizer
 
+---
+
+<div align="center">
+
+  <img src="https://repository-images.githubusercontent.com/1047158448/e056a73f-18d0-4e22-b576-99d3b76548b6" alt="R6 Randomizer Banner" />
+
+  <br />
+
+</div>
+
+---
+
 ## Downloads
-You can download the latest version of the **R6 Randomizer** app here:  
-- [Download Latest Release (ZIP)](https://github.com/mritari/Rainbow-Six-Siege-Randomizer/releases/latest/download/release.zip)  
-- [View All Releases](https://github.com/mritari/Rainbow-Six-Siege-Randomizer/releases)
+- ![Total Downloads](https://img.shields.io/github/downloads/mritari/Rainbow-Six-Siege-Randomizer/total?style=for-the-badge)
+- [![Latest Version](https://img.shields.io/github/v/release/mritari/Rainbow-Six-Siege-Randomizer?style=for-the-badge)](https://github.com/mritari/Rainbow-Six-Siege-Randomizer/releases/latest)  
+- [![View All Releases](https://img.shields.io/badge/View%20All-Releases-blue?style=for-the-badge)](https://github.com/mritari/Rainbow-Six-Siege-Randomizer/releases)
+
+  ---
+
+## Changelog
+
+### v1.2.0
+- **YEAR 10 SEASON 3 — Operation High Stakes**
+- Added new operator: **Leon "Denari" Winzenried**
+- Window is positioned on top and made transparent for an overlay-like look.
+- Updated hotkey logic (`Shift + F5` to toggle visibility).
+- Note: This is not a true game overlay like Discord, Steam, or NVIDIA Overlays.
+- Overlay now starts hidden and locks to the top-right corner of the screen.
+- Minor UI improvements and bug fixes.
+
+### v1.1.1
+- Minor changes
+
+### v1.1.0
+- Operators enabled/disabled state now saves automatically to a config file.
+- When reopening the app, previously selected operators are restored.
+
+### v1.0.0
+- Initial release.
+- Randomize operators for Attackers or Defenders.
+- Enable or disable operators in settings.
+- Prevents duplicate picks until reset.
+
+--- 
+
+## Screenshots 
+
+### Main Window 
+![Main Window](images/ss.png) 
+
+### Settings Menu 
+![Settings Menu](images/ss2.png) 
 
 ---
 
 ## Overview
-The **R6 Randomizer** app allows you to randomly select an operator for **Attackers** or **Defenders** in Rainbow Six Siege.  
-You can enable or disable specific operators and view their icons in the settings menu.
+The **R6 Randomizer** is your go-to companion for Rainbow Six Siege, helping you pick a random operator for **Attackers** or **Defenders**.  
+It’s a quick way to keep your gameplay fresh and unpredictable, with full control over which operators are included.
 
 ---
 
-## Screenshots
-
-### Main Window
-![Main Window](images/ss.png)
-
-### Settings Menu
-![Settings Menu](images/ss2.png)
-
----
-
-## Main Features
+## Key Features
 
 ### Randomize Button
-- Click **Randomize** to pick a random operator from the currently enabled list.
-- The selected operator’s image will appear in the main picture box.
-- Once an operator has been randomized, it will **not be selected again** until you reset the app.
+- Click **Randomize** to select a random operator from your enabled list.  
+- Displays the chosen operator’s portrait and details in the main window.  
+- Prevents the same operator from being chosen again until you reset the app.
 
-### Attacker / Defender Toggle
-- Click **Attackers** or **Defenders** to choose which side the random operator should be selected from.
-- Only enabled operators from the chosen side will be included.
+### Operator Management
+- Click **Settings** to view the full operator roster.  
+- **Green border** = enabled, **Red border** = disabled.  
+- Click an operator’s icon to toggle its status.  
+- Changes are **saved automatically** and persist between launches.
 
-### Settings
-- Click **Settings** to open the operator list.
-- Each operator has an icon:
-  - **Green border** = enabled
-  - **Red border** = disabled
-- Click an operator icon to toggle whether it is included in randomization.
-- You can minimize or restore the settings window without losing changes.
+### In-Game Overlay
+- **Press `Shift + F5`** to toggle the app’s visibility while playing.  
+- Designed to work best in **borderless windowed mode** — may not function in exclusive fullscreen.  
+- Overlay stays in the top-right corner and can be hidden when not needed.
 
-### Global Hotkey
-- **Press `AltGr + R`** to minimize or restore the main app window while playing the game.
-- Works even if Rainbow Six Siege is running in fullscreen.
-
-### Operator List
-- All operators are **enabled by default**.
-- Disabled operators are skipped in randomization.
-
-### Error Handling
-- **No operators enabled** → You must enable at least one operator in settings.
-- **Image not found** → The app will warn you if the operator image is missing.
+### Customizable Roster
+- All operators are **enabled by default**.  
+- Disable any operators you don’t want in the randomization pool.
 
 ---
 
-## Notes
-- Keep the settings window open before starting to ensure all operators are loaded.
-- Missing images will be highlighted with a **red background** and a tooltip with the missing file path.
+## Troubleshooting
+
+### No Operators Enabled
+- You must enable at least one operator for the randomizer to work.
+
+### Image Not Found
+- Missing images are shown with a **red background** and a tooltip displaying the missing file path.
+
+### Overlay Not Showing In-Game
+- Use **borderless windowed mode** for best results.
+- Ensure the hotkey doesn’t conflict with another application.
+- Some anti-cheat restrictions may prevent overlay display in exclusive fullscreen.
