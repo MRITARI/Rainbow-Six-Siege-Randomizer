@@ -2,13 +2,7 @@
 
 ---
 
-<div align="center">
-
-  <img src="https://repository-images.githubusercontent.com/1047158448/e056a73f-18d0-4e22-b576-99d3b76548b6" alt="R6 Randomizer Banner" />
-
-  <br />
-
-</div>
+![banner](images/banner.png)
 
 ---
 
