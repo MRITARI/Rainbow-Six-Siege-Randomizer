@@ -104,6 +104,14 @@
             this.pictureBox_65 = new System.Windows.Forms.PictureBox();
             this.pictureBox_75 = new System.Windows.Forms.PictureBox();
             this.pictureBox_76 = new System.Windows.Forms.PictureBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.randomizeSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.primaryWeaponsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.secondaryWeaponsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.attachmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gripsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scopesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gadgetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_3)).BeginInit();
@@ -180,6 +188,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_65)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_75)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_76)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox_1
@@ -790,6 +799,86 @@
             this.pictureBox_76.TabIndex = 81;
             this.pictureBox_76.TabStop = false;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.randomizeSettingsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1014, 29);
+            this.menuStrip1.TabIndex = 82;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // randomizeSettingsToolStripMenuItem
+            // 
+            this.randomizeSettingsToolStripMenuItem.BackColor = System.Drawing.Color.Black;
+            this.randomizeSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.primaryWeaponsToolStripMenuItem,
+            this.secondaryWeaponsToolStripMenuItem,
+            this.attachmentsToolStripMenuItem,
+            this.gripsToolStripMenuItem,
+            this.scopesToolStripMenuItem,
+            this.gadgetsToolStripMenuItem});
+            this.randomizeSettingsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.randomizeSettingsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.randomizeSettingsToolStripMenuItem.Name = "randomizeSettingsToolStripMenuItem";
+            this.randomizeSettingsToolStripMenuItem.Size = new System.Drawing.Size(178, 25);
+            this.randomizeSettingsToolStripMenuItem.Text = "Randomizer settings";
+            // 
+            // primaryWeaponsToolStripMenuItem
+            // 
+            this.primaryWeaponsToolStripMenuItem.Checked = true;
+            this.primaryWeaponsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.primaryWeaponsToolStripMenuItem.Name = "primaryWeaponsToolStripMenuItem";
+            this.primaryWeaponsToolStripMenuItem.Size = new System.Drawing.Size(233, 26);
+            this.primaryWeaponsToolStripMenuItem.Text = "Primary weapons";
+            this.primaryWeaponsToolStripMenuItem.Click += new System.EventHandler(this.primaryWeaponsToolStripMenuItem_Click);
+            // 
+            // secondaryWeaponsToolStripMenuItem
+            // 
+            this.secondaryWeaponsToolStripMenuItem.Checked = true;
+            this.secondaryWeaponsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.secondaryWeaponsToolStripMenuItem.Name = "secondaryWeaponsToolStripMenuItem";
+            this.secondaryWeaponsToolStripMenuItem.Size = new System.Drawing.Size(233, 26);
+            this.secondaryWeaponsToolStripMenuItem.Text = "Secondary weapons";
+            this.secondaryWeaponsToolStripMenuItem.Click += new System.EventHandler(this.secondaryWeaponsToolStripMenuItem_Click);
+            // 
+            // attachmentsToolStripMenuItem
+            // 
+            this.attachmentsToolStripMenuItem.Checked = true;
+            this.attachmentsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.attachmentsToolStripMenuItem.Name = "attachmentsToolStripMenuItem";
+            this.attachmentsToolStripMenuItem.Size = new System.Drawing.Size(233, 26);
+            this.attachmentsToolStripMenuItem.Text = "Attachments";
+            this.attachmentsToolStripMenuItem.Click += new System.EventHandler(this.attachmentsToolStripMenuItem_Click);
+            // 
+            // gripsToolStripMenuItem
+            // 
+            this.gripsToolStripMenuItem.Checked = true;
+            this.gripsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.gripsToolStripMenuItem.Name = "gripsToolStripMenuItem";
+            this.gripsToolStripMenuItem.Size = new System.Drawing.Size(233, 26);
+            this.gripsToolStripMenuItem.Text = "Grips";
+            this.gripsToolStripMenuItem.Click += new System.EventHandler(this.gripsToolStripMenuItem_Click);
+            // 
+            // scopesToolStripMenuItem
+            // 
+            this.scopesToolStripMenuItem.Checked = true;
+            this.scopesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.scopesToolStripMenuItem.Name = "scopesToolStripMenuItem";
+            this.scopesToolStripMenuItem.Size = new System.Drawing.Size(233, 26);
+            this.scopesToolStripMenuItem.Text = "Scopes";
+            this.scopesToolStripMenuItem.Click += new System.EventHandler(this.scopesToolStripMenuItem_Click);
+            // 
+            // gadgetsToolStripMenuItem
+            // 
+            this.gadgetsToolStripMenuItem.Checked = true;
+            this.gadgetsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.gadgetsToolStripMenuItem.Name = "gadgetsToolStripMenuItem";
+            this.gadgetsToolStripMenuItem.Size = new System.Drawing.Size(233, 26);
+            this.gadgetsToolStripMenuItem.Text = "Gadgets";
+            this.gadgetsToolStripMenuItem.Click += new System.EventHandler(this.gadgetsToolStripMenuItem_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -872,7 +961,9 @@
             this.Controls.Add(this.pictureBox_3);
             this.Controls.Add(this.pictureBox_2);
             this.Controls.Add(this.pictureBox_1);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Form2";
             this.Text = "Form2";
@@ -952,7 +1043,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_65)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_75)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_76)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1034,5 +1128,13 @@
         private System.Windows.Forms.PictureBox pictureBox_65;
         private System.Windows.Forms.PictureBox pictureBox_75;
         private System.Windows.Forms.PictureBox pictureBox_76;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem randomizeSettingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem primaryWeaponsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem secondaryWeaponsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem attachmentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gripsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem scopesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gadgetsToolStripMenuItem;
     }
 }

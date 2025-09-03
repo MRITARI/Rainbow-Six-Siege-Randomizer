@@ -17,6 +17,19 @@ namespace r6random
         public Form2(List<OperatorInfo> operators)
         {
             InitializeComponent();
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            bool primary = bool.Parse(config.AppSettings.Settings["Primary"].Value);
+            bool secondary = bool.Parse(config.AppSettings.Settings["Secondary"].Value);
+            bool attachments = bool.Parse(config.AppSettings.Settings["Attachments"].Value);
+            bool grips = bool.Parse(config.AppSettings.Settings["Grips"].Value);
+            bool scopes = bool.Parse(config.AppSettings.Settings["Scopes"].Value);
+            bool gadgets = bool.Parse(config.AppSettings.Settings["Gadgets"].Value);
+            primaryWeaponsToolStripMenuItem.Checked = primary;
+            secondaryWeaponsToolStripMenuItem.Checked = secondary;
+            attachmentsToolStripMenuItem.Checked = attachments;
+            gripsToolStripMenuItem.Checked = grips;
+            scopesToolStripMenuItem.Checked = scopes;
+            gadgetsToolStripMenuItem.Checked = gadgets;
             this.Text = "Select Operators";
             byte[] iconBytes = Properties.Resources.icon;
             using (var ms = new MemoryStream(iconBytes))
@@ -95,6 +108,120 @@ namespace r6random
             {
                 op.Enabled = enabledNames.Contains(op.Name);
             }
+        }
+
+        private void primaryWeaponsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            bool primary = bool.Parse(config.AppSettings.Settings["Primary"].Value);
+            primary = !primary;
+            config.AppSettings.Settings["Primary"].Value = primary.ToString();
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+            if (primary)
+            {
+                primaryWeaponsToolStripMenuItem.Checked = true;
+            }
+            else
+            {
+                primaryWeaponsToolStripMenuItem.Checked = false;
+
+            }
+        }
+
+        private void secondaryWeaponsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            bool secondary = bool.Parse(config.AppSettings.Settings["Secondary"].Value);
+            secondary = !secondary;
+            config.AppSettings.Settings["Secondary"].Value = secondary.ToString();
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+            if (secondary)
+            {
+                secondaryWeaponsToolStripMenuItem.Checked = true;
+            }
+            else
+            {
+                secondaryWeaponsToolStripMenuItem.Checked = false;
+            }
+
+        }
+
+        private void attachmentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            bool attachments = bool.Parse(config.AppSettings.Settings["Attachments"].Value);
+            attachments = !attachments;
+            config.AppSettings.Settings["Attachments"].Value = attachments.ToString();
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+            if (attachments)
+            {
+                attachmentsToolStripMenuItem.Checked = true;
+            }
+            else
+            {
+                attachmentsToolStripMenuItem.Checked = false;
+            }
+
+        }
+
+        private void gripsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            bool grips = bool.Parse(config.AppSettings.Settings["Grips"].Value);
+            grips = !grips;
+            config.AppSettings.Settings["Grips"].Value = grips.ToString();
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+            if (grips)
+            {
+                gripsToolStripMenuItem.Checked = true;
+            }
+            else
+            {
+                gripsToolStripMenuItem.Checked = false;
+            }
+
+        }
+
+        private void scopesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            bool scopes = bool.Parse(config.AppSettings.Settings["Scopes"].Value);
+            scopes = !scopes;
+            config.AppSettings.Settings["Scopes"].Value = scopes.ToString();
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+            if (scopes)
+            {
+                scopesToolStripMenuItem.Checked = true;
+            }
+            else
+            {
+                scopesToolStripMenuItem.Checked = false;
+            }
+
+        }
+
+        private void gadgetsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            bool gadgets = bool.Parse(config.AppSettings.Settings["Gadgets"].Value);
+            gadgets = !gadgets;
+            config.AppSettings.Settings["Gadgets"].Value = gadgets.ToString();
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+            if (gadgets)
+            {
+                gadgetsToolStripMenuItem.Checked = true;
+            }
+            else
+            {
+                gadgetsToolStripMenuItem.Checked = false;
+            }
+
         }
     }
 }
