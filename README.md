@@ -12,6 +12,15 @@
 
 ## Changelog
 
+### v1.2.1 
+- Added loadout randomizer
+- Primary weapons
+- Secondary weapons
+- Attachments
+- Grips
+- Scopes
+- Gadgets
+
 ### v1.2.0
 - **YEAR 10 SEASON 3 — Operation High Stakes**
 - Added new operator: **Leon "Denari" Winzenried**
