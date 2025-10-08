@@ -4,9 +4,9 @@
 ---
 
 ## Downloads
-- ![Total Downloads](https://img.shields.io/github/downloads/mritari/Rainbow-Six-Siege-Randomizer/total?style=for-the-badge)
-- [![Latest Version](https://img.shields.io/github/v/release/mritari/Rainbow-Six-Siege-Randomizer?style=for-the-badge)](https://github.com/mritari/Rainbow-Six-Siege-Randomizer/releases/latest)  
-- [![View All Releases](https://img.shields.io/badge/View%20All-Releases-blue?style=for-the-badge)](https://github.com/mritari/Rainbow-Six-Siege-Randomizer/releases)
+![Total Downloads](https://img.shields.io/github/downloads/mritari/Rainbow-Six-Siege-Randomizer/total?style=for-the-badge)
+[![Latest Version](https://img.shields.io/github/v/release/mritari/Rainbow-Six-Siege-Randomizer?style=for-the-badge)](https://github.com/mritari/Rainbow-Six-Siege-Randomizer/releases/latest)  
+[![View All Releases](https://img.shields.io/badge/View%20All-Releases-blue?style=for-the-badge)](https://github.com/mritari/Rainbow-Six-Siege-Randomizer/releases)
 
   ---
 
