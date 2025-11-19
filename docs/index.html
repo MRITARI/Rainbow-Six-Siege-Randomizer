@@ -1,25 +1,23 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMRS-Handler Documentation (Blue Neon)</title>
+    <title>R6 Randomizer Documentation (Red Neon)</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
+    <script> 
         /* This page is completely vibe-coded because I'm terrible at HTML/CSS, but it's neat as hell. */
 
-
-
-        /* Custom Tailwind Configuration - Adapted for Blue Neon */
+        /* Custom Tailwind Configuration */
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'neon-blue': '#14B7FF', /* Bright Blue */
-                        'dark-blue': '#006699', /* Darker Blue */
+                        'neon-red': '#FF3914', /* Bright Red */
+                        'dark-red': '#B02A00', /* Darker Red */
                         'dark-bg': '#0D1117',
                         'card-bg': '#161B22',
-                        'subtle-text': '#C9D1D9',
+                        'subtle-text': '#C9D1D9', /* Lighter text for contrast */
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -39,29 +37,29 @@
             min-height: 100vh;
         }
 
-        /* Neon Glow Effect on text and borders - BLUE */
-        .neon-glow-blue {
-            text-shadow: 0 0 5px #14B7FF, 0 0 10px #14B7FF;
+        /* Neon Glow Effect on text and borders - RED */
+        .neon-glow-red {
+            text-shadow: 0 0 5px #FF3914, 0 0 10px #FF3914;
         }
-        .border-neon {
-            border-color: #14B7FF;
-            box-shadow: 0 0 8px #14B7FF;
+        .border-neon-red {
+            border-color: #FF3914;
+            box-shadow: 0 0 8px #FF3914;
         }
-        .bg-neon-hover-blue:hover {
-            background-color: #14B7FF;
+        .bg-neon-hover-red:hover {
+            background-color: #FF3914;
             color: #0D1117;
-            box-shadow: 0 0 15px rgba(20, 183, 255, 0.8);
+            box-shadow: 0 0 15px rgba(255, 57, 20, 0.8);
             transform: scale(1.05);
         }
 
-        /* Content Card Hover Effect (from randomizer.html) */
+        /* Card Hover Effect */
         .content-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(20, 183, 255, 0.2), 0 0 15px rgba(20, 183, 255, 0.5);
-            border-color: #14B7FF;
+            box-shadow: 0 10px 20px rgba(255, 57, 20, 0.2), 0 0 15px rgba(255, 57, 20, 0.5);
+            border-color: #FF3914;
         }
 
-        /* Section Fade-in Animation (from website.html) */
+        /* Section Fade-in Animation (From website.html) */
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
@@ -72,207 +70,191 @@
             transform: translateY(0);
         }
 
-        /* Custom Styling for Code Blocks (for Pygments) */
-        pre {
-            background-color: #0D1117 !important; /* Ensure background matches */
-            padding: 1rem;
-            border-radius: 0.5rem;
-            border: 1px solid #14B7FF;
-            overflow-x: auto;
-            white-space: pre-wrap;
-            word-wrap: break-word;
+        /* Details (Accordion) Styling for Red Theme */
+        details summary {
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: #FF3914; /* Neon Red for Summary */
+            outline: none;
+            font-weight: bold;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
         }
-        
-        /* Inline Code Styling (replaces `...`) */
-        .inline-code {
-             background-color: #161B22; 
-             padding: 0.2rem 0.4rem;
-             border-radius: 0.3rem;
-             font-family: 'Consolas', 'Courier New', monospace;
-             color: #14B7FF; /* Blue color for visual distinction */
-             font-weight: bold;
+        details summary:hover {
+            color: #B02A00; /* Dark Red on hover */
         }
-        
-        blockquote {
-            border-left: 4px solid #14B7FF;
-            padding-left: 1rem;
-            margin: 1rem 0;
-            color: #A8B3CF;
-            font-style: italic;
+        details[open] {
+            border-color: #FF3914;
+            box-shadow: 0 0 15px rgba(255, 57, 20, 0.4);
         }
-        
-        .code-block-cmd {
-            font-size: 0.9rem;
-            color: #E6EDF3;
+        details[open] summary {
+             color: #B02A00;
+        }
+        details ul {
+             list-style-type: disc;
+             margin-left: 1.5rem;
+             padding-left: 0;
+        }
+        details h3 {
+            color: #FF3914;
+            font-size: 1.125rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .badge-img {
+            display: block;
+            margin-bottom: 0.5rem;
         }
 
     </style>
-    </head>
+</head>
 <body class="bg-dark-bg p-4 sm:p-8">
 
     <div class="max-w-4xl mx-auto space-y-16">
 
         <header id="header" class="text-center pt-8 fade-in">
-            <h1 class="text-4xl sm:text-6xl font-extrabold mt-6 neon-glow-blue">SMRS-HANDLER</h1>
-            <p class="text-subtle-text mt-2 text-lg">Simple Multi Reverse Shell Handler</p>
+            <img src="https://raw.githubusercontent.com/MRITARI/Rainbow-Six-Siege-Randomizer/refs/heads/master/images/banner.png" alt="Rainbow Six Siege Randomizer Banner"
+                class="max-w-full rounded-xl mx-auto border-4 border-neon-red shadow-xl" width="800" height="200">
+            <h1 class="text-4xl sm:text-6xl font-extrabold mt-6 neon-glow-red">R6 RANDOMIZER</h1>
+            <p class="text-subtle-text mt-2 text-lg">A Random Operator and Loadout Utility for Rainbow Six Siege</p>
         </header>
 
-        <section id="overview" class="fade-in" style="transition-delay: 0.2s;">
-            <h2 class="text-3xl font-bold mb-6 text-neon-blue border-b-2 border-neon-blue pb-2 tracking-widest">OVERVIEW</h2>
-            <div class="bg-card-bg p-6 sm:p-8 rounded-xl border border-gray-700 shadow-xl space-y-4">
-                <p class="text-lg text-subtle-text leading-relaxed">
-                    A <strong class="font-bold">light, console-based reverse-shell manager and interactive listener</strong> written in <strong class="font-bold">Python 3</strong>. It allows you to accept and manage multiple reverse shell connections, select a client, and interact with it from a single terminal. (Version 1.1.0)
-                </p>
-                <div class="text-sm font-semibold text-dark-blue p-3 border border-dark-blue rounded-lg">
-                    <strong class="font-bold">Legal & Ethical Notice:</strong> This tool can be used for offensive operations. Do not use it against networks, systems, or devices you do not own or for which you do not have explicit, written permission. Use only in your lab, on your machines, or within written scopes of authorized penetration tests.
-                </div>
+        <section id="intro" class="fade-in text-center" style="transition-delay: 0.2s;">
+            <h2 class="text-2xl sm:text-3xl text-neon-red font-bold hover:text-dark-red transition-colors duration-300">OVERVIEW</h2>
+            <div class="bg-card-bg p-6 sm:p-8 rounded-xl border border-gray-700 shadow-xl">
+                <p class="text-lg text-subtle-text leading-relaxed">The R6 Randomizer is your go-to companion for Rainbow Six Siege, helping you pick a random operator for Attackers or Defenders. It’s a quick way to keep your gameplay fresh and unpredictable, with full control over which operators are included.</p>
                 <div class="flex justify-center space-x-6 mt-6">
-                    <a href="https://github.com/MRITARI" target="_blank" class="text-neon-blue font-bold hover:text-dark-blue transition-colors duration-300 flex items-center">
+                    <a href="https://github.com/MRITARI" target="_blank" class="text-neon-red font-bold hover:text-dark-red transition-colors duration-300 flex items-center">
                         <i data-lucide="github" class="w-5 h-5 mr-1"></i> GitHub
                     </a>
-                    <a href="https://github.com/MRITARI/SMRS-Handler" target="_blank" class="text-neon-blue font-bold hover:text-dark-blue transition-colors duration-300 flex items-center">
+                    <a href="https://github.com/MRITARI/Rainbow-Six-Siege-Randomizer" target="_blank" class="text-neon-red font-bold hover:text-dark-red transition-colors duration-300 flex items-center">
                         <i data-lucide="code" class="w-5 h-5 mr-1"></i> Repository
                     </a>
                 </div>
             </div>
         </section>
 
-        <hr class="border-gray-700">
-
-        <section id="features-requirements" class="fade-in" style="transition-delay: 0.4s;">
+        <main id="content" class="fade-in" style="transition-delay: 0.4s;">
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300">
-                    <h3 class="text-xl font-bold mb-4 text-neon-blue flex items-center"><i data-lucide="check-square" class="w-5 h-5 mr-2"></i> Key Features</h3>
-                    <ul class="list-disc ml-5 space-y-2 text-subtle-text">
-                        <li>Listen for multiple reverse shell connections (TCP).</li>
-                        <li>Auto-assign incremental client IDs.</li>
-                        <li>Interactive console with commands like <span class="inline-code">list</span>, <span class="inline-code">use &lt;id&gt;</span>, <span class="inline-code">helpsh</span>, <span class="inline-code">clear</span>, and <span class="inline-code">exit</span>.</li>
-                        <li>Per-client output handling (only output from the selected client is printed).</li>
-                        <li>Non-blocking handling of multiple clients via threads and queues.</li>
-                        <li>Shell one-liners (Bash, Python, PowerShell, etc.) included via <span class="inline-code">helpsh</span>.</li>
-                    </ul>
-                </div>
 
-                <div class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300">
-                    <h3 class="text-xl font-bold mb-4 text-neon-blue flex items-center"><i data-lucide="wrench" class="w-5 h-5 mr-2"></i> Requirements</h3>
-                    <ul class="list-none space-y-4">
-                        <li>
-                            <strong class="text-white">Software:</strong> Python 3.8+ recommended.
-                        </li>
-                        <li>
-                            <strong class="text-white">Python Modules:</strong> <span class="inline-code">colorama</span> and <span class="inline-code">pygments</span>.
-                            <pre class="mt-2 code-block-cmd">python3 -m pip install colorama pygments</pre>
-                        </li>
-                    </ul>
-                </div>
+                <details open class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300">
+                    <summary class="tracking-wider">Downloads</summary>
+                    <div class="pt-4">
+                        <p><img src="https://img.shields.io/github/downloads/mritari/Rainbow-Six-Siege-Randomizer/total?style=for-the-badge" class="badge-img" alt="Total Downloads"></p>
+                        <p><a href="https://github.com/mritari/Rainbow-Six-Siege-Randomizer/releases/latest" target="_blank"><img src="https://img.shields.io/github/v/release/mritari/Rainbow-Six-Siege-Randomizer?style=for-the-badge" class="badge-img" alt="Latest Release Version"></a></p>
+                        <p><a href="https://github.com/mritari/Rainbow-Six-Siege-Randomizer/releases" target="_blank"><img src="https://img.shields.io/badge/View%20All-Releases-red?style=for-the-badge" class="badge-img" alt="View All Releases"></a></p>
+                    </div>
+                </details>
+
+                <details class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300">
+                    <summary class="tracking-wider">Key Features</summary>
+                    <div class="pt-4 space-y-4">
+                        <h3 class="text-xl">Randomize Button</h3>
+                        <ul class="text-subtle-text space-y-2">
+                            <li>Click Randomize to select a random operator from your enabled list.</li>
+                            <li>Displays the chosen operator’s portrait and details in the main window.</li>
+                            <li>Prevents the same operator from being chosen again until you reset the app.</li>
+                        </ul>
+
+                        <h3 class="text-xl">Operator Management</h3>
+                        <ul class="text-subtle-text space-y-2">
+                            <li>Click Settings to view the full operator roster.</li>
+                            <li>Green border = enabled, Red border = disabled.</li>
+                            <li>Click an operator’s icon to toggle its status.</li>
+                            <li>Changes are saved automatically and persist between launches.</li>
+                        </ul>
+
+                        <h3 class="text-xl">In-Game Overlay</h3>
+                        <ul class="text-subtle-text space-y-2">
+                            <li>Press Shift + F5 to toggle the app’s visibility while playing.</li>
+                            <li>Designed to work best in borderless windowed mode — may not function in exclusive fullscreen.</li>
+                            <li>Overlay stays in the top-right corner and can be hidden when not needed.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details open class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300 md:col-span-2">
+                    <summary class="tracking-wider">Changelog</summary>
+                    <div class="pt-4 space-y-6">
+                        <div class="border-b border-gray-700 pb-4">
+                            <h3>v1.2.1</h3>
+                            <ul class="text-subtle-text space-y-1">
+                                <li>Added loadout randomizer</li>
+                                <li>Primary weapons, Secondary weapons, Attachments, Grips, Scopes, Gadgets</li>
+                            </ul>
+                        </div>
+                        <div class="border-b border-gray-700 pb-4">
+                            <h3>v1.2.0</h3>
+                            <ul class="text-subtle-text space-y-1">
+                                <li>YEAR 10 SEASON 3 — Operation High Stakes</li>
+                                <li>Added new operator: Leon "Denari" Winzenried</li>
+                                <li>Transparent for an overlay-like look.</li>
+                                <li>Updated hotkey logic (Shift + F5 to toggle visibility).</li>
+                                <li>Note: This is not a true game overlay like Discord, Steam, or NVIDIA Overlays.</li>
+                                <li>Overlay now locks to the top-right corner of the screen.</li>
+                                <li>Minor UI improvements and bug fixes.</li>
+                            </ul>
+                        </div>
+                        <div class="border-b border-gray-700 pb-4">
+                            <h3>v1.1.1</h3>
+                            <ul class="text-subtle-text space-y-1">
+                                <li>Minor changes.</li>
+                            </ul>
+                        </div>
+                        <div class="border-b border-gray-700 pb-4">
+                            <h3>v1.1.0</h3>
+                            <ul class="text-subtle-text space-y-1">
+                                <li>Operators enabled/disabled state now saves automatically to a config file.</li>
+                                <li>When reopening the app, previously selected operators are restored.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>v1.0.0</h3>
+                            <ul class="text-subtle-text space-y-1">
+                                <li>Initial release.</li>
+                                <li>Randomize operators for Attackers or Defenders.</li>
+                                <li>Enable or disable operators in settings.</li>
+                                <li>Prevents duplicate picks until reset.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300">
+                    <summary class="tracking-wider">Screenshots</summary>
+                    <div class="pt-4 space-y-6">
+                        <h3>Main Window</h3>
+                        <img src="https://raw.githubusercontent.com/MRITARI/Rainbow-Six-Siege-Randomizer/refs/heads/master/images/ss.png" alt="Main Window Screenshot" class="rounded-lg border-2 border-gray-700">
+                        <h3>Settings Menu</h3>
+                        <img src="https://raw.githubusercontent.com/MRITARI/Rainbow-Six-Siege-Randomizer/refs/heads/master/images/ss2.png" alt="Settings Menu Screenshot" class="rounded-lg border-2 border-gray-700">
+                    </div>
+                </details>
+
+                <details class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300">
+                    <summary class="tracking-wider">Troubleshooting</summary>
+                    <div class="pt-4 space-y-6">
+                        <h3>No Operators Enabled</h3>
+                        <p class="text-subtle-text">You must enable at least one operator for the randomizer to work.</p>
+
+                        <h3>Image Not Found</h3>
+                        <p class="text-subtle-text">Missing images are shown with a red background and a tooltip displaying the missing file path.</p>
+
+                        <h3>Overlay Not Showing In-Game</h3>
+                        <ul class="text-subtle-text space-y-2">
+                            <li>Use borderless windowed mode for best results.</li>
+                            <li>Ensure the hotkey doesn’t conflict with another application.</li>
+                            <li>Some anti-cheat restrictions may prevent overlay display in exclusive fullscreen.</li>
+                        </ul>
+                    </div>
+                </details>
+
             </div>
-        </section>
+        </main>
 
-        <hr class="border-gray-700">
-
-        <section id="workflow" class="fade-in" style="transition-delay: 0.6s;">
-            <h2 class="text-3xl font-bold mb-6 text-neon-blue border-b-2 border-neon-blue pb-2 tracking-widest">WORKFLOW</h2>
-            <div class="bg-card-bg p-8 rounded-xl border border-neon-blue border-neon shadow-2xl space-y-6">
-                <ol class="list-decimal ml-5 space-y-4 text-lg text-subtle-text">
-                    <li>Start the listener on your lab machine: <span class="inline-code">python3 smrs.py</span>.</li>
-                    <li>From an authorized target, run a reverse shell payload that connects back to your listener IP/PORT.</li>
-                    <li>When a client connects, the handler will automatically notify you and select the client. (Example message: <span class="inline-code">[+] Client 1 connected from 10.0.0.12:56789 [*] Auto-selected client 1</span>)</li>
-                    <li>Use <span class="inline-code">list</span> to view connected clients.</li>
-                    <li>Use <span class="inline-code">use &lt;id&gt;</span> to select a different client.</li>
-                    <li>Type shell commands and press Enter; the output from the selected client will appear in your console.</li>
-                    <li>Use <span class="inline-code">helpsh</span> to view the bundled one-liners.</li>
-                </ol>
-
-                <h3 class="text-xl font-bold mt-8 text-white flex items-center"><i data-lucide="command" class="w-5 h-5 mr-2 text-neon-blue"></i> Command List</h3>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left table-auto">
-                        <thead>
-                            <tr class="text-neon-blue border-b border-neon-blue">
-                                <th class="py-2 pr-4">Command</th>
-                                <th class="py-2">Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b border-gray-700">
-                                <td class="py-2 pr-4"><span class="inline-code">list</span></td>
-                                <td class="py-2">List current connections and which client is selected.</td>
-                            </tr>
-                            <tr class="border-b border-gray-700">
-                                <td class="py-2 pr-4"><span class="inline-code">use &lt;id&gt;</span></td>
-                                <td class="py-2">Switch to a client by its numeric ID.</td>
-                            </tr>
-                            <tr class="border-b border-gray-700">
-                                <td class="py-2 pr-4"><span class="inline-code">help</span></td>
-                                <td class="py-2">Display help menu.</td>
-                            </tr>
-                            <tr class="border-b border-gray-700">
-                                <td class="py-2 pr-4"><span class="inline-code">helpsh</span></td>
-                                <td class="py-2">Print reverse-shell one-liners (syntax highlighted).</td>
-                            </tr>
-                            <tr class="border-b border-gray-700">
-                                <td class="py-2 pr-4"><span class="inline-code">clear</span> / <span class="inline-code">cls</span></td>
-                                <td class="py-2">Clear console and reprint banner.</td>
-                            </tr>
-                            <tr>
-                                <td class="py-2 pr-4"><span class="inline-code">exit</span> / <span class="inline-code">quit</span></td>
-                                <td class="py-2">Close all client sockets and exit.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3 class="text-xl font-bold mt-8 text-white flex items-center"><i data-lucide="settings-2" class="w-5 h-5 mr-2 text-neon-blue"></i> Changing IP/PORT</h3>
-                <p class="text-subtle-text">Modify these variables at the top of the Python script and restart it:</p>
-                <pre><code class="code-block-cmd">IP = '10.0.0.5'      # used in the embedded payload templates
-HOST = '0.0.0.0'     # interface to bind the listener
-PORT = 4444          # listener port</code></pre>
-            </div>
-            
-        </section>
-
-        <hr class="border-gray-700">
-
-        <section id="troubleshooting-security" class="fade-in" style="transition-delay: 0.8s;">
-             <h2 class="text-3xl font-bold mb-6 text-neon-blue border-b-2 border-neon-blue pb-2 tracking-widest">SUPPORT</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300">
-                    <h3 class="text-xl font-bold mb-4 text-neon-blue flex items-center"><i data-lucide="bug" class="w-5 h-5 mr-2"></i> Troubleshooting</h3>
-                    <ul class="list-disc ml-5 space-y-3 text-subtle-text">
-                        <li><strong>Nothing connects:</strong> Check the client payload's IP/port, ensure the listener is bound correctly (set <span class="inline-code">HOST</span> to <span class="inline-code">0.0.0.0</span> to listen on all interfaces), and check for firewall rules.</li>
-                        <li><strong>Client disconnects immediately:</strong> Look for payload errors on the client side (wrong quoting, missing interpreter), network drops, or NAT issues.</li>
-                        <li><strong>Encoding issues:</strong> The output is <span class="inline-code">decode('utf-8', errors='ignore')</span>, so some binary or non-UTF8 data may be ignored or mangled.</li>
-                        <li><strong>Permission issues binding to port &lt; 1024:</strong> Use a higher port or run script with appropriate privileges.</li>
-                    </ul>
-                </div>
-
-                <div class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300">
-                    <h3 class="text-xl font-bold mb-4 text-neon-blue flex items-center"><i data-lucide="shield-check" class="w-5 h-5 mr-2"></i> Security Considerations</h3>
-                    <ul class="list-disc ml-5 space-y-3 text-subtle-text">
-                        <li>Do not expose the tool on untrusted networks or the public internet, as it accepts raw shell input/output over TCP.</li>
-                        <li>Consider running the listener inside an isolated environment (VM, container) and inside an isolated network segment when testing.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <hr class="border-gray-700">
-
-        <section id="license" class="fade-in" style="transition-delay: 1.0s;">
-            <h2 class="text-3xl font-bold mb-6 text-neon-blue border-b-2 border-neon-blue pb-2 tracking-widest">LICENSE</h2>
-            <div class="bg-card-bg p-8 rounded-xl border border-neon-blue border-neon shadow-2xl space-y-4">
-                <h3 class="text-xl font-bold mt-8 text-white">MIT License</h3>
-                <p class="text-subtle-text">Copyright (c) 2025 MRITARI</p>
-                <p class="text-sm text-subtle-text leading-relaxed">
-                    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-                </p>
-                <p class="text-sm text-subtle-text leading-relaxed">
-                    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-                </p>
-                <p class="text-sm text-subtle-text leading-relaxed">
-                    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-                </p>
-            </div>
-        </section>
+        <footer id="footer" class="text-center pb-10 pt-10 fade-in" style="transition-delay: 0.8s;">
+             <p class="text-subtle-text text-sm">Documentation styled after MRITARI's portfolio theme.</p>
+        </footer>
 
     </div>
 
