@@ -1,178 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rainbow Six Siege Randomizer</title>
-<style>
-  body {
-    background-color: #0d1117;
-    color: #c9d1d9;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  header {
-    text-align: center;
-    padding: 20px;
-  }
-  header img {
-    max-width: 100%;
-    border-radius: 10px;
-  }
-  .intro {
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 10px 20px 30px 20px;
-    font-size: 1.1rem;
-  }
-  main {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 20px;
-    padding: 20px;
-  }
-  details {
-    background-color: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 10px;
-    padding: 15px;
-  }
-  summary {
-    font-size: 1.2rem;
-    cursor: pointer;
-    color: #58a6ff;
-    outline: none;
-  }
-  details[open] summary {
-    color: #1f6feb;
-  }
-  img {
-    max-width: 100%;
-    border-radius: 8px;
-  }
-  ul {
-    margin-left: 20px;
-  }
-</style>
-</head>
-<body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMRS-Handler Documentation (Blue Neon)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        /* This page is completely vibe-coded because I'm terrible at HTML/CSS, but it's neat as hell. */
 
-<header>
-  <img src="https://raw.githubusercontent.com/MRITARI/Rainbow-Six-Siege-Randomizer/refs/heads/master/images/banner.png" alt="Rainbow Six Siege Randomizer Banner">
-</header>
 
-<div class="intro">
-  <p>The <strong>R6 Randomizer</strong> is your go-to companion for Rainbow Six Siege, helping you pick a random operator for <strong>Attackers</strong> or <strong>Defenders</strong>.<br>
-  It’s a quick way to keep your gameplay fresh and unpredictable, with full control over which operators are included.</p>
-<a href="https://github.com/MRITARI">GitHub</a>
-<a href="https://github.com/MRITARI/Rainbow-Six-Siege-Randomizer">Repo</a>
-</div>
 
-<main>
-  <details open>
-    <summary>Downloads</summary>
-    <p><img src="https://img.shields.io/github/downloads/mritari/Rainbow-Six-Siege-Randomizer/total?style=for-the-badge"></p>
-    <p><a href="https://github.com/mritari/Rainbow-Six-Siege-Randomizer/releases/latest"><img src="https://img.shields.io/github/v/release/mritari/Rainbow-Six-Siege-Randomizer?style=for-the-badge"></a></p>
-    <p><a href="https://github.com/mritari/Rainbow-Six-Siege-Randomizer/releases"><img src="https://img.shields.io/badge/View%20All-Releases-blue?style=for-the-badge"></a></p>
-  </details>
+        /* Custom Tailwind Configuration - Adapted for Blue Neon */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neon-blue': '#14B7FF', /* Bright Blue */
+                        'dark-blue': '#006699', /* Darker Blue */
+                        'dark-bg': '#0D1117',
+                        'card-bg': '#161B22',
+                        'subtle-text': '#C9D1D9',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0D1117;
+            color: #E6EDF3;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease-in-out;
+            min-height: 100vh;
+        }
 
-  <details open>
-    <summary>Changelog</summary>
-    <h3>v1.2.1</h3>
-    <ul>
-      <li><strong>Added loadout randomizer</strong></li>
-      <li>Primary weapons</li>
-      <li>Secondary weapons</li>
-      <li>Attachments</li>
-      <li>Grips</li>
-      <li>Scopes</li>
-      <li>Gadgets</li>
-    </ul>
-    <h3>v1.2.0</h3>
-    <ul>
-      <li><strong>YEAR 10 SEASON 3 — Operation High Stakes</strong></li>
-      <li>Added new operator: <strong>Leon "Denari" Winzenried</strong></li>
-      <li>Transparent for an overlay-like look.</li>
-      <li>Updated hotkey logic (<code>Shift + F5</code> to toggle visibility).</li>
-      <li>Note: This is not a true game overlay like Discord, Steam, or NVIDIA Overlays.</li>
-      <li>Overlay now locks to the top-right corner of the screen.</li>
-      <li>Minor UI improvements and bug fixes.</li>
-    </ul>
-    <h3>v1.1.1</h3>
-    <ul>
-      <li>Minor changes</li>
-    </ul>
-    <h3>v1.1.0</h3>
-    <ul>
-      <li>Operators enabled/disabled state now saves automatically to a config file.</li>
-      <li>When reopening the app, previously selected operators are restored.</li>
-    </ul>
-    <h3>v1.0.0</h3>
-    <ul>
-      <li>Initial release.</li>
-      <li>Randomize operators for Attackers or Defenders.</li>
-      <li>Enable or disable operators in settings.</li>
-      <li>Prevents duplicate picks until reset.</li>
-    </ul>
-  </details>
+        /* Neon Glow Effect on text and borders - BLUE */
+        .neon-glow-blue {
+            text-shadow: 0 0 5px #14B7FF, 0 0 10px #14B7FF;
+        }
+        .border-neon {
+            border-color: #14B7FF;
+            box-shadow: 0 0 8px #14B7FF;
+        }
+        .bg-neon-hover-blue:hover {
+            background-color: #14B7FF;
+            color: #0D1117;
+            box-shadow: 0 0 15px rgba(20, 183, 255, 0.8);
+            transform: scale(1.05);
+        }
 
-  <details>
-    <summary>Screenshots</summary>
-    <h3>Main Window</h3>
-    <img src="https://raw.githubusercontent.com/MRITARI/Rainbow-Six-Siege-Randomizer/refs/heads/master/images/ss.png" alt="Main Window">
-    <h3>Settings Menu</h3>
-    <img src="https://raw.githubusercontent.com/MRITARI/Rainbow-Six-Siege-Randomizer/refs/heads/master/images/ss2.png" alt="Settings Menu">
-  </details>
+        /* Content Card Hover Effect (from randomizer.html) */
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(20, 183, 255, 0.2), 0 0 15px rgba(20, 183, 255, 0.5);
+            border-color: #14B7FF;
+        }
 
-  <details>
-    <summary>Key Features</summary>
-    <h3>Randomize Button</h3>
-    <ul>
-      <li>Click <strong>Randomize</strong> to select a random operator from your enabled list.</li>
-      <li>Displays the chosen operator’s portrait and details in the main window.</li>
-      <li>Prevents the same operator from being chosen again until you reset the app.</li>
-    </ul>
+        /* Section Fade-in Animation (from website.html) */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    <h3>Operator Management</h3>
-    <ul>
-      <li>Click <strong>Settings</strong> to view the full operator roster.</li>
-      <li><strong>Green border</strong> = enabled, <strong>Red border</strong> = disabled.</li>
-      <li>Click an operator’s icon to toggle its status.</li>
-      <li>Changes are <strong>saved automatically</strong> and persist between launches.</li>
-    </ul>
+        /* Custom Styling for Code Blocks (for Pygments) */
+        pre {
+            background-color: #0D1117 !important; /* Ensure background matches */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #14B7FF;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        /* Inline Code Styling (replaces `...`) */
+        .inline-code {
+             background-color: #161B22; 
+             padding: 0.2rem 0.4rem;
+             border-radius: 0.3rem;
+             font-family: 'Consolas', 'Courier New', monospace;
+             color: #14B7FF; /* Blue color for visual distinction */
+             font-weight: bold;
+        }
+        
+        blockquote {
+            border-left: 4px solid #14B7FF;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #A8B3CF;
+            font-style: italic;
+        }
+        
+        .code-block-cmd {
+            font-size: 0.9rem;
+            color: #E6EDF3;
+        }
 
-    <h3>In-Game Overlay</h3>
-    <ul>
-      <li><strong>Press <code>Shift + F5</code></strong> to toggle the app’s visibility while playing.</li>
-      <li>Designed to work best in <strong>borderless windowed mode</strong> — may not function in exclusive fullscreen.</li>
-      <li>Overlay stays in the top-right corner and can be hidden when not needed.</li>
-    </ul>
+    </style>
+    </head>
+<body class="bg-dark-bg p-4 sm:p-8">
 
-    <h3>Customizable Roster</h3>
-    <ul>
-      <li>All operators are <strong>enabled by default</strong>.</li>
-      <li>Disable any operators you don’t want in the randomization pool.</li>
-    </ul>
-  </details>
+    <div class="max-w-4xl mx-auto space-y-16">
 
-  <details>
-    <summary>Troubleshooting</summary>
-    <h3>No Operators Enabled</h3>
-    <p>You must enable at least one operator for the randomizer to work.</p>
+        <header id="header" class="text-center pt-8 fade-in">
+            <h1 class="text-4xl sm:text-6xl font-extrabold mt-6 neon-glow-blue">SMRS-HANDLER</h1>
+            <p class="text-subtle-text mt-2 text-lg">Simple Multi Reverse Shell Handler</p>
+        </header>
 
-    <h3>Image Not Found</h3>
-    <p>Missing images are shown with a <strong>red background</strong> and a tooltip displaying the missing file path.</p>
+        <section id="overview" class="fade-in" style="transition-delay: 0.2s;">
+            <h2 class="text-3xl font-bold mb-6 text-neon-blue border-b-2 border-neon-blue pb-2 tracking-widest">OVERVIEW</h2>
+            <div class="bg-card-bg p-6 sm:p-8 rounded-xl border border-gray-700 shadow-xl space-y-4">
+                <p class="text-lg text-subtle-text leading-relaxed">
+                    A <strong class="font-bold">light, console-based reverse-shell manager and interactive listener</strong> written in <strong class="font-bold">Python 3</strong>. It allows you to accept and manage multiple reverse shell connections, select a client, and interact with it from a single terminal. (Version 1.1.0)
+                </p>
+                <div class="text-sm font-semibold text-dark-blue p-3 border border-dark-blue rounded-lg">
+                    <strong class="font-bold">Legal & Ethical Notice:</strong> This tool can be used for offensive operations. Do not use it against networks, systems, or devices you do not own or for which you do not have explicit, written permission. Use only in your lab, on your machines, or within written scopes of authorized penetration tests.
+                </div>
+                <div class="flex justify-center space-x-6 mt-6">
+                    <a href="https://github.com/MRITARI" target="_blank" class="text-neon-blue font-bold hover:text-dark-blue transition-colors duration-300 flex items-center">
+                        <i data-lucide="github" class="w-5 h-5 mr-1"></i> GitHub
+                    </a>
+                    <a href="https://github.com/MRITARI/SMRS-Handler" target="_blank" class="text-neon-blue font-bold hover:text-dark-blue transition-colors duration-300 flex items-center">
+                        <i data-lucide="code" class="w-5 h-5 mr-1"></i> Repository
+                    </a>
+                </div>
+            </div>
+        </section>
 
-    <h3>Overlay Not Showing In-Game</h3>
-    <ul>
-      <li>Use <strong>borderless windowed mode</strong> for best results.</li>
-      <li>Ensure the hotkey doesn’t conflict with another application.</li>
-      <li>Some anti-cheat restrictions may prevent overlay display in exclusive fullscreen.</li>
-    </ul>
-  </details>
-</main>
+        <hr class="border-gray-700">
 
+        <section id="features-requirements" class="fade-in" style="transition-delay: 0.4s;">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300">
+                    <h3 class="text-xl font-bold mb-4 text-neon-blue flex items-center"><i data-lucide="check-square" class="w-5 h-5 mr-2"></i> Key Features</h3>
+                    <ul class="list-disc ml-5 space-y-2 text-subtle-text">
+                        <li>Listen for multiple reverse shell connections (TCP).</li>
+                        <li>Auto-assign incremental client IDs.</li>
+                        <li>Interactive console with commands like <span class="inline-code">list</span>, <span class="inline-code">use &lt;id&gt;</span>, <span class="inline-code">helpsh</span>, <span class="inline-code">clear</span>, and <span class="inline-code">exit</span>.</li>
+                        <li>Per-client output handling (only output from the selected client is printed).</li>
+                        <li>Non-blocking handling of multiple clients via threads and queues.</li>
+                        <li>Shell one-liners (Bash, Python, PowerShell, etc.) included via <span class="inline-code">helpsh</span>.</li>
+                    </ul>
+                </div>
+
+                <div class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300">
+                    <h3 class="text-xl font-bold mb-4 text-neon-blue flex items-center"><i data-lucide="wrench" class="w-5 h-5 mr-2"></i> Requirements</h3>
+                    <ul class="list-none space-y-4">
+                        <li>
+                            <strong class="text-white">Software:</strong> Python 3.8+ recommended.
+                        </li>
+                        <li>
+                            <strong class="text-white">Python Modules:</strong> <span class="inline-code">colorama</span> and <span class="inline-code">pygments</span>.
+                            <pre class="mt-2 code-block-cmd">python3 -m pip install colorama pygments</pre>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-gray-700">
+
+        <section id="workflow" class="fade-in" style="transition-delay: 0.6s;">
+            <h2 class="text-3xl font-bold mb-6 text-neon-blue border-b-2 border-neon-blue pb-2 tracking-widest">WORKFLOW</h2>
+            <div class="bg-card-bg p-8 rounded-xl border border-neon-blue border-neon shadow-2xl space-y-6">
+                <ol class="list-decimal ml-5 space-y-4 text-lg text-subtle-text">
+                    <li>Start the listener on your lab machine: <span class="inline-code">python3 smrs.py</span>.</li>
+                    <li>From an authorized target, run a reverse shell payload that connects back to your listener IP/PORT.</li>
+                    <li>When a client connects, the handler will automatically notify you and select the client. (Example message: <span class="inline-code">[+] Client 1 connected from 10.0.0.12:56789 [*] Auto-selected client 1</span>)</li>
+                    <li>Use <span class="inline-code">list</span> to view connected clients.</li>
+                    <li>Use <span class="inline-code">use &lt;id&gt;</span> to select a different client.</li>
+                    <li>Type shell commands and press Enter; the output from the selected client will appear in your console.</li>
+                    <li>Use <span class="inline-code">helpsh</span> to view the bundled one-liners.</li>
+                </ol>
+
+                <h3 class="text-xl font-bold mt-8 text-white flex items-center"><i data-lucide="command" class="w-5 h-5 mr-2 text-neon-blue"></i> Command List</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left table-auto">
+                        <thead>
+                            <tr class="text-neon-blue border-b border-neon-blue">
+                                <th class="py-2 pr-4">Command</th>
+                                <th class="py-2">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-700">
+                                <td class="py-2 pr-4"><span class="inline-code">list</span></td>
+                                <td class="py-2">List current connections and which client is selected.</td>
+                            </tr>
+                            <tr class="border-b border-gray-700">
+                                <td class="py-2 pr-4"><span class="inline-code">use &lt;id&gt;</span></td>
+                                <td class="py-2">Switch to a client by its numeric ID.</td>
+                            </tr>
+                            <tr class="border-b border-gray-700">
+                                <td class="py-2 pr-4"><span class="inline-code">help</span></td>
+                                <td class="py-2">Display help menu.</td>
+                            </tr>
+                            <tr class="border-b border-gray-700">
+                                <td class="py-2 pr-4"><span class="inline-code">helpsh</span></td>
+                                <td class="py-2">Print reverse-shell one-liners (syntax highlighted).</td>
+                            </tr>
+                            <tr class="border-b border-gray-700">
+                                <td class="py-2 pr-4"><span class="inline-code">clear</span> / <span class="inline-code">cls</span></td>
+                                <td class="py-2">Clear console and reprint banner.</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 pr-4"><span class="inline-code">exit</span> / <span class="inline-code">quit</span></td>
+                                <td class="py-2">Close all client sockets and exit.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-xl font-bold mt-8 text-white flex items-center"><i data-lucide="settings-2" class="w-5 h-5 mr-2 text-neon-blue"></i> Changing IP/PORT</h3>
+                <p class="text-subtle-text">Modify these variables at the top of the Python script and restart it:</p>
+                <pre><code class="code-block-cmd">IP = '10.0.0.5'      # used in the embedded payload templates
+HOST = '0.0.0.0'     # interface to bind the listener
+PORT = 4444          # listener port</code></pre>
+            </div>
+            
+        </section>
+
+        <hr class="border-gray-700">
+
+        <section id="troubleshooting-security" class="fade-in" style="transition-delay: 0.8s;">
+             <h2 class="text-3xl font-bold mb-6 text-neon-blue border-b-2 border-neon-blue pb-2 tracking-widest">SUPPORT</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300">
+                    <h3 class="text-xl font-bold mb-4 text-neon-blue flex items-center"><i data-lucide="bug" class="w-5 h-5 mr-2"></i> Troubleshooting</h3>
+                    <ul class="list-disc ml-5 space-y-3 text-subtle-text">
+                        <li><strong>Nothing connects:</strong> Check the client payload's IP/port, ensure the listener is bound correctly (set <span class="inline-code">HOST</span> to <span class="inline-code">0.0.0.0</span> to listen on all interfaces), and check for firewall rules.</li>
+                        <li><strong>Client disconnects immediately:</strong> Look for payload errors on the client side (wrong quoting, missing interpreter), network drops, or NAT issues.</li>
+                        <li><strong>Encoding issues:</strong> The output is <span class="inline-code">decode('utf-8', errors='ignore')</span>, so some binary or non-UTF8 data may be ignored or mangled.</li>
+                        <li><strong>Permission issues binding to port &lt; 1024:</strong> Use a higher port or run script with appropriate privileges.</li>
+                    </ul>
+                </div>
+
+                <div class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300">
+                    <h3 class="text-xl font-bold mb-4 text-neon-blue flex items-center"><i data-lucide="shield-check" class="w-5 h-5 mr-2"></i> Security Considerations</h3>
+                    <ul class="list-disc ml-5 space-y-3 text-subtle-text">
+                        <li>Do not expose the tool on untrusted networks or the public internet, as it accepts raw shell input/output over TCP.</li>
+                        <li>Consider running the listener inside an isolated environment (VM, container) and inside an isolated network segment when testing.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-gray-700">
+
+        <section id="license" class="fade-in" style="transition-delay: 1.0s;">
+            <h2 class="text-3xl font-bold mb-6 text-neon-blue border-b-2 border-neon-blue pb-2 tracking-widest">LICENSE</h2>
+            <div class="bg-card-bg p-8 rounded-xl border border-neon-blue border-neon shadow-2xl space-y-4">
+                <h3 class="text-xl font-bold mt-8 text-white">MIT License</h3>
+                <p class="text-subtle-text">Copyright (c) 2025 MRITARI</p>
+                <p class="text-sm text-subtle-text leading-relaxed">
+                    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+                </p>
+                <p class="text-sm text-subtle-text leading-relaxed">
+                    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+                </p>
+                <p class="text-sm text-subtle-text leading-relaxed">
+                    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Replaces lucide icon placeholders with actual SVG elements
+            lucide.createIcons();
+
+            const faders = document.querySelectorAll('.fade-in');
+
+            const appearOptions = {
+                threshold: 0,
+                rootMargin: "0px 0px -100px 0px" // Start fade-in 100px before reaching the bottom
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('is-visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+    </script>
 </body>
 </html>
