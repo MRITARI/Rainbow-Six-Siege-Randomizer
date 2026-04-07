@@ -15,7 +15,10 @@ jobs:
 
     - name: Inject API Key into Form1.cs
       run: |
-        (Get-Content r6random/Form1.cs) -replace 'YOUR_GITHUB_SECRET_HERE', '${{ secrets.R6_API_KEY }}' | Set-Content r6random/Form1.cs
+        $path = "r6random/Form1.cs"
+        $content = Get-Content -Path $path -Raw
+        $content = $content.Replace("YOUR_GITHUB_SECRET_HERE", "${{ secrets.R6_API_KEY }}")
+        Set-Content -Path $path -Value $content
       shell: pwsh
 
     - name: Setup MSBuild
