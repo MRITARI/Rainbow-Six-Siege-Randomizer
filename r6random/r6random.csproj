@@ -160,10 +160,10 @@
     <Content Include="Res\Attackers\Buck_ICON.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Res\Attackers\Capitão.png">
+    <Content Include="Res\Attackers\Capitao.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Res\Attackers\Capitão_ICON.png">
+    <Content Include="Res\Attackers\Capitao_ICON.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Res\Attackers\Deimos.png">
@@ -268,10 +268,10 @@
     <Content Include="Res\Attackers\Nomad_ICON.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Res\Attackers\Nøkk.png">
+    <Content Include="Res\Attackers\Nokk.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Res\Attackers\Nøkk_ICON.png">
+    <Content Include="Res\Attackers\Nokk_ICON.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Res\Attackers\Osa.png">
@@ -302,6 +302,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Res\Attackers\Sledge_ICON.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+	<Content Include="Res\Attackers\SolidSnake.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+	<Content Include="Res\Attackers\SolidSnake_ICON.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Res\Attackers\Striker.png">
@@ -430,10 +436,10 @@
     <Content Include="Res\Defenders\Goyo_ICON.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Res\Defenders\Jäger.png">
+    <Content Include="Res\Defenders\Jager.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Res\Defenders\Jäger_ICON.png">
+    <Content Include="Res\Defenders\Jager_ICON.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Res\Defenders\Kaid.png">
@@ -508,10 +514,10 @@
     <Content Include="Res\Defenders\Sentry_ICON.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Res\Defenders\Skopós.png">
+    <Content Include="Res\Defenders\Skopos.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Res\Defenders\Skopós_ICON.png">
+    <Content Include="Res\Defenders\Skopos_ICON.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Res\Defenders\Smoke.png">

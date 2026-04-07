@@ -16,7 +16,7 @@ namespace r6random
         public List<Gadget> Gadgets { get; set; }
 
         public bool Enabled { get; set; } = true;
-        public string ImagePath => $@"Res\{Role}s\{Name}.png";
-        public string IconPath => $@"Res\{Role}s\{Name}_ICON.png";
+        public string ImagePath => $@"Res\{Role}s\{Name.Replace(" ", "")}.png";
+        public string IconPath => $@"Res\{Role}s\{Name.Replace(" ", "")}_ICON.png";
     }
 }

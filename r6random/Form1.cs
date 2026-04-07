@@ -244,41 +244,72 @@ namespace r6random
         {
             string cacheFile = @"Res\operators.json";
             string json = string.Empty;
+            bool shouldSync = false;
+            bool isFirstEverRun = false;
 
-            try
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            int sessionCount = 0;
+
+            if (config.AppSettings.Settings["SessionCount"] != null)
             {
-                // Check if the key is still the placeholder or empty
-                if (ApiKey.Contains("YOUR_GITHUB") || string.IsNullOrWhiteSpace(ApiKey))
-                {
-                    MessageBox.Show("DEBUG: The API Key was NOT injected! The string is still the placeholder. Check your GitHub Secrets.", "API Skipped", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    string url = $"https://api.r6roulette.de/operator?api_key={ApiKey}";
+                int.TryParse(config.AppSettings.Settings["SessionCount"].Value, out sessionCount);
+            }
+            else
+            {
+                isFirstEverRun = true;
+            }
 
-                    if (!client.DefaultRequestHeaders.Contains("User-Agent"))
+            sessionCount++;
+
+            if (sessionCount >= 20 || isFirstEverRun || !File.Exists(cacheFile))
+            {
+                shouldSync = true;
+                sessionCount = 0;
+            }
+
+            if (config.AppSettings.Settings["SessionCount"] == null)
+            {
+                config.AppSettings.Settings.Add("SessionCount", sessionCount.ToString());
+            }
+            else
+            {
+                config.AppSettings.Settings["SessionCount"].Value = sessionCount.ToString();
+            }
+
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+
+            if (shouldSync)
+            {
+                try
+                {
+                    if (ApiKey.Contains("YOUR_GITHUB") || string.IsNullOrWhiteSpace(ApiKey))
                     {
-                        client.DefaultRequestHeaders.Add("User-Agent", "R6-Randomizer-Desktop-App");
+                        MessageBox.Show("DEBUG: The API Key was NOT injected! The string is still the placeholder. Check your GitHub Secrets.", "API Skipped", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
+                    else
+                    {
+                        string url = $"https://api.r6roulette.de/operator?api_key={ApiKey}";
 
-                    // Try to fetch the data
-                    json = await client.GetStringAsync(url);
+                        if (!client.DefaultRequestHeaders.Contains("User-Agent"))
+                        {
+                            client.DefaultRequestHeaders.Add("User-Agent", "R6-Randomizer-Desktop-App");
+                        }
 
-                    // Save the fresh data
-                    if (!Directory.Exists("Res")) Directory.CreateDirectory("Res");
-                    File.WriteAllText(cacheFile, json);
+                        json = await client.GetStringAsync(url);
 
-                    // Pop-up to confirm it worked
-                    MessageBox.Show("DEBUG: Successfully fetched new data from R6 Roulette and updated operators.json!", "API Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (!Directory.Exists("Res")) Directory.CreateDirectory("Res");
+                        File.WriteAllText(cacheFile, json);
+
+                        MessageBox.Show("DEBUG: Successfully fetched new data from R6 Roulette and updated operators.json!", "API Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"DEBUG: API Fetch failed! Error: {ex.Message}", "API Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception ex)
-            {
-                // This will pop up if the server rejects your key (e.g. 401 Unauthorized or 404 Not Found)
-                MessageBox.Show($"DEBUG: API Fetch failed! Error: {ex.Message}", "API Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
 
-            // Fallback logic
             if (string.IsNullOrEmpty(json) && File.Exists(cacheFile))
             {
                 json = File.ReadAllText(cacheFile);
@@ -288,6 +319,8 @@ namespace r6random
             {
                 _operators = JsonConvert.DeserializeObject<List<OperatorInfo>>(json);
                 Form2.LoadOperatorStatesFromConfig(_operators);
+
+                Btn_Randomize_Click(null, EventArgs.Empty);
             }
             else
             {

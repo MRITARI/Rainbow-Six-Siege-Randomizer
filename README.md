@@ -1,6 +1,5 @@
 # Rainbow Six Siege Randomizer
 ![Build Status](https://github.com/MRITARI/Rainbow-Six-Siege-Randomizer/actions/workflows/build.yml/badge.svg)
-![banner](images/banner.png)
 
 ---
 
@@ -24,7 +23,6 @@ Special thanks to the R6 Roulette team for providing API access to keep this too
 - Added new operator: **Solid Snake**
 - **Live API Integration**: The app now syncs directly with R6 Roulette to get the latest operator data.
 - **Auto-Caching**: Data is fetched once at startup and cached locally to ensure fast performance and offline support.
-- **CI/CD Implementation**: Automated build process using GitHub Actions.
 
 ### v1.2.1 
 - Added loadout randomizer (Primary/Secondary weapons, Attachments, Grips, Scopes, and Gadgets).

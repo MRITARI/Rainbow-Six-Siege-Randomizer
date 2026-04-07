@@ -9,7 +9,7 @@ namespace r6random
         public string WeaponName { get; set; }
         [JsonProperty("weapon_type")]
         public string WeaponType { get; set; }
-        [JsonProperty("grip")]
+        [JsonProperty("gripes")]
         public List<string> Grips { get; set; }
         [JsonProperty("scopes")]
         public List<string> Scopes { get; set; }
