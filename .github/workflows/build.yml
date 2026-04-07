@@ -1,0 +1,34 @@
+name: Build Release
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Inject API Key into Form1.cs
+      run: |
+        (Get-Content r6random/Form1.cs) -replace 'YOUR_GITHUB_SECRET_HERE', '${{ secrets.R6_API_KEY }}' | Set-Content r6random/Form1.cs
+      shell: pwsh
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Restore NuGet Packages
+      run: nuget restore r6random.sln
+
+    - name: Build the App
+      run: msbuild r6random.sln /p:Configuration=Release
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: R6-Randomizer-Release
+        path: r6random/bin/Release/
