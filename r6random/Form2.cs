@@ -68,7 +68,7 @@ namespace r6random
 
         private void LoadOperatorIcons()
         {
-            for (int i = 0; i < _operators.Count && i < 76; i++)
+            for (int i = 0; i < _operators.Count && i < 80; i++)
             {
                 var pb = Controls.Find($"pictureBox_{i + 1}", true).FirstOrDefault() as PictureBox;
                 if (pb == null) continue;
