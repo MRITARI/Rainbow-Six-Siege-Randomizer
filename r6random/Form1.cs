@@ -20,9 +20,9 @@ namespace r6random
     {
         private const string GitHubRepoOwner = "MRITARI";
         private const string GitHubRepoName = "Rainbow-Six-Siege-Randomizer";
-        private static readonly Version CurrentVersion = new Version("1.2.1");
+        private static readonly Version CurrentVersion = new Version("1.3.0");
         private static readonly HttpClient client = new HttpClient();
-
+        private const string ApiKey = "YOUR_GITHUB_SECRET_HERE";
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
         private const int WM_SYSKEYDOWN = 0x0104;
@@ -153,7 +153,7 @@ namespace r6random
             this.Opacity = 0.9;
 
 
-            this.Text = "R6 Randomizer v1.2.1";
+            this.Text = "R6 Randomizer v1.2.2";
 
             label3.Text = $"Gun: N/A";
             label4.Text = $"Attachment: N/A";
@@ -237,19 +237,55 @@ namespace r6random
             label9.BackColor = Color.FromArgb(20, 20, 20);
 
 
-            if (File.Exists("res/operators.json"))
+            _operators = new List<OperatorInfo>(); // Initialize empty list to prevent crashes
+            _ = InitializeOperatorsAsync();        // Start fetching data in the background
+        }
+        private async Task InitializeOperatorsAsync()
+        {
+            string cacheFile = @"Res\operators.json";
+            string json = string.Empty;
+
+            try
             {
-                var json = File.ReadAllText("res/operators.json");
+                
+                if (ApiKey != "YOUR_GITHUB_SECRET_HERE" && !string.IsNullOrWhiteSpace(ApiKey))
+                {
+                    string url = $"https://api.r6roulette.de/operator?api_key={ApiKey}";
+
+                    if (!client.DefaultRequestHeaders.Contains("User-Agent"))
+                    {
+                        client.DefaultRequestHeaders.Add("User-Agent", "R6-Randomizer-Desktop-App");
+                    }
+
+                    json = await client.GetStringAsync(url);
+
+                    
+                    if (!Directory.Exists("Res")) Directory.CreateDirectory("Res");
+                    File.WriteAllText(cacheFile, json);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Failed to fetch from API: {ex.Message}");
+            }
+
+            
+            if (string.IsNullOrEmpty(json) && File.Exists(cacheFile))
+            {
+                json = File.ReadAllText(cacheFile);
+            }
+
+            
+            if (!string.IsNullOrEmpty(json))
+            {
                 _operators = JsonConvert.DeserializeObject<List<OperatorInfo>>(json);
                 Form2.LoadOperatorStatesFromConfig(_operators);
             }
             else
             {
-                MessageBox.Show("operators.json not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                _operators = new List<OperatorInfo>();
+                MessageBox.Show("Could not load operators from API or local cache!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void Btn_Settings_Click(object sender, EventArgs e)
         {
             if (_form2 == null || _form2.IsDisposed)
