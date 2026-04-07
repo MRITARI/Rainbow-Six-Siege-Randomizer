@@ -247,8 +247,12 @@ namespace r6random
 
             try
             {
-                
-                if (ApiKey != "YOUR_GITHUB_SECRET_HERE" && !string.IsNullOrWhiteSpace(ApiKey))
+                // Check if the key is still the placeholder or empty
+                if (ApiKey == "YOUR_GITHUB_SECRET_HERE" || string.IsNullOrWhiteSpace(ApiKey))
+                {
+                    MessageBox.Show("DEBUG: The API Key was NOT injected! The string is still the placeholder. Check your GitHub Secrets.", "API Skipped", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
                 {
                     string url = $"https://api.r6roulette.de/operator?api_key={ApiKey}";
 
@@ -257,25 +261,29 @@ namespace r6random
                         client.DefaultRequestHeaders.Add("User-Agent", "R6-Randomizer-Desktop-App");
                     }
 
+                    // Try to fetch the data
                     json = await client.GetStringAsync(url);
 
-                    
+                    // Save the fresh data
                     if (!Directory.Exists("Res")) Directory.CreateDirectory("Res");
                     File.WriteAllText(cacheFile, json);
+
+                    // Pop-up to confirm it worked
+                    MessageBox.Show("DEBUG: Successfully fetched new data from R6 Roulette and updated operators.json!", "API Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Failed to fetch from API: {ex.Message}");
+                // This will pop up if the server rejects your key (e.g. 401 Unauthorized or 404 Not Found)
+                MessageBox.Show($"DEBUG: API Fetch failed! Error: {ex.Message}", "API Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            
+            // Fallback logic
             if (string.IsNullOrEmpty(json) && File.Exists(cacheFile))
             {
                 json = File.ReadAllText(cacheFile);
             }
 
-            
             if (!string.IsNullOrEmpty(json))
             {
                 _operators = JsonConvert.DeserializeObject<List<OperatorInfo>>(json);
