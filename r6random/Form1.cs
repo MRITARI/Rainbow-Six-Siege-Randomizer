@@ -248,7 +248,7 @@ namespace r6random
             try
             {
                 // Check if the key is still the placeholder or empty
-                if (ApiKey == "YOUR_GITHUB_SECRET_HERE" || string.IsNullOrWhiteSpace(ApiKey))
+                if (ApiKey == "YOUR_GITHUB" || string.IsNullOrWhiteSpace(ApiKey))
                 {
                     MessageBox.Show("DEBUG: The API Key was NOT injected! The string is still the placeholder. Check your GitHub Secrets.", "API Skipped", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
