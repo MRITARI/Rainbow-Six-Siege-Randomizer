@@ -53,5 +53,7 @@ jobs:
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: R6-Randomizer-Release
-        path: r6random/bin/Release/
+        path: |
+          r6random/bin/Release/
+          !r6random/bin/Release/*.xml
+          !r6random/bin/Release/*.pdb
