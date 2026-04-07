@@ -18,16 +18,27 @@ jobs:
         API_KEY: ${{ secrets.R6_API_KEY }}
       shell: pwsh
       run: |
-        if ([string]::IsNullOrWhiteSpace($env:API_KEY)) {
-            Write-Error "The API key from GitHub Secrets is empty! GitHub is not passing it."
-            exit 1
-        }
-        Write-Host "Success: API Key loaded from secrets. Length: $($env:API_KEY.Length)"
-        
         $path = "r6random/Form1.cs"
         $content = Get-Content -Path $path -Raw
+        
+        
+        if ($content -notmatch "YOUR_GITHUB_SECRET_HERE") {
+            Write-Error "CRITICAL ERROR: Could not find 'YOUR_GITHUB_SECRET_HERE' in Form1.cs! Did you push the placeholder to GitHub?"
+            exit 1
+        }
+        
+        
         $content = $content.Replace("YOUR_GITHUB_SECRET_HERE", $env:API_KEY)
         Set-Content -Path $path -Value $content -Encoding UTF8
+        
+        
+        $check = Get-Content -Path $path -Raw
+        if ($check -match "YOUR_GITHUB_SECRET_HERE") {
+            Write-Error "CRITICAL ERROR: Replacement failed to save!"
+            exit 1
+        }
+        
+        Write-Host "Success: Key was perfectly injected into Form1.cs!"
 
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1.1
