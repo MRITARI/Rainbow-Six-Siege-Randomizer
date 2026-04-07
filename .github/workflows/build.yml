@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Inject API Key into Form1.cs
       run: |
@@ -28,7 +28,7 @@ jobs:
       run: msbuild r6random.sln /p:Configuration=Release
 
     - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: R6-Randomizer-Release
         path: r6random/bin/Release/
