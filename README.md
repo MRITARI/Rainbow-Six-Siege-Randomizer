@@ -55,11 +55,6 @@ It’s a quick way to keep your gameplay fresh and unpredictable, with full cont
 
 ## Key Features
 
-### 🔄 Live Data Syncing
-- No more waiting for manual app updates when a new season drops! 
-- The app automatically fetches the latest operators and loadouts from the cloud.
-- Smart caching ensures the app works even if you lose internet connection.
-
 ### 🎲 Randomize Button
 - Click **Randomize** to select a random operator from your enabled list.  
 - Displays the chosen operator’s portrait and details in the main window.  
