@@ -16,6 +16,7 @@ jobs:
     - name: Inject API Key into Form1.cs
       env:
         API_KEY: ${{ secrets.R6_API_KEY }}
+        FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       shell: pwsh
       run: |
         $path = "r6random/Form1.cs"
