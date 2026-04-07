@@ -1,5 +1,6 @@
 # Rainbow Six Siege Randomizer
 ![Build Status](https://github.com/MRITARI/Rainbow-Six-Siege-Randomizer/actions/workflows/build.yml/badge.svg)
+![banner](images/banner.png)
 
 ---
 
