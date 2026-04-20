@@ -53,14 +53,19 @@ jobs:
     - name: Create Obfuscar Config
       shell: pwsh
       run: |
+        $netFrameworkPath = Get-ChildItem "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\" | 
+                            Sort-Object Name -Descending | 
+                            Select-Object -First 1 -ExpandProperty FullName
+
         $xml = @"
         <?xml version='1.0'?>
         <Obfuscator>
           <Var name='InPath' value='r6random\bin\Release' />
           <Var name='OutPath' value='r6random\bin\Release\Obfuscated' />
+          
           <Var name='CopyDependencies' value='true' />
           
-          <AssemblySearchPath path='C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2' />
+          <AssemblySearchPath path='$netFrameworkPath' />
           <AssemblySearchPath path='r6random\bin\Release' />
 
           <Var name='KeepPublicApi' value='false' />
@@ -68,10 +73,12 @@ jobs:
           <Var name='HideStrings' value='true' />
           <Var name='OptimizeMethods' value='true' />
           <Var name='SuppressIldasm' value='true' />
+          
           <Module file='`$(InPath)\r6random.exe' />
         </Obfuscator>
         "@
         Set-Content -Path obfuscar.xml -Value $xml -Encoding UTF8
+        Write-Host "Detected Framework Path: $netFrameworkPath"
 
     - name: Run Obfuscation
       run: obfuscar.console obfuscar.xml
