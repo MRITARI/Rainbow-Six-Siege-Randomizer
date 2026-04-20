@@ -53,16 +53,20 @@ jobs:
     - name: Create Obfuscar Config
       shell: pwsh
       run: |
-        $netFrameworkPath = Get-ChildItem "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\" | 
-                            Sort-Object Name -Descending | 
-                            Select-Object -First 1 -ExpandProperty FullName
+        # Target the exact 4.7.2 Reference Assembly folder
+        $netFrameworkPath = "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2"
+        
+        # Verify the path exists
+        if (-not (Test-Path "$netFrameworkPath\System.Windows.Forms.dll")) {
+            Write-Error "Could not find System.Windows.Forms.dll at $netFrameworkPath"
+            exit 1
+        }
 
         $xml = @"
         <?xml version='1.0'?>
         <Obfuscator>
           <Var name='InPath' value='r6random\bin\Release' />
           <Var name='OutPath' value='r6random\bin\Release\Obfuscated' />
-          
           <Var name='CopyDependencies' value='true' />
           
           <AssemblySearchPath path='$netFrameworkPath' />
@@ -78,7 +82,7 @@ jobs:
         </Obfuscator>
         "@
         Set-Content -Path obfuscar.xml -Value $xml -Encoding UTF8
-        Write-Host "Detected Framework Path: $netFrameworkPath"
+        Write-Host "Success: Pointed Obfuscar to .NET 4.7.2 Reference Assemblies."
 
     - name: Run Obfuscation
       run: obfuscar.console obfuscar.xml
