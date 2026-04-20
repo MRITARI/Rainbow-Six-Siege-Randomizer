@@ -58,6 +58,8 @@ jobs:
         <Obfuscator>
           <Var name='InPath' value='r6random\bin\Release' />
           <Var name='OutPath' value='r6random\bin\Release\Obfuscated' />
+          <AssemblySearchPath path='C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2' />
+          
           <Var name='KeepPublicApi' value='false' />
           <Var name='HidePrivateApi' value='true' />
           <Var name='HideStrings' value='true' />
