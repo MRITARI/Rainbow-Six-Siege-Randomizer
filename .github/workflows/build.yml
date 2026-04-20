@@ -13,9 +13,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Inject API Key into Form1.cs
+    - name: Magic in Form1.cs.. #Yes very obfuscating you will never know whats happening here lol
       env:
-        API_KEY: ${{ secrets.RMU9283DURM9UF }}
+        OIFHASO: ${{ secrets.RMU9283DURM9UF }}
         FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       shell: pwsh
       run: |
@@ -27,7 +27,7 @@ jobs:
             exit 1
         }
         
-        $content = $content.Replace("ftm04857ht08745htjf", $env:API_KEY)
+        $content = $content.Replace("ftm04857ht08745htjf", $env:OIFHASO)
         Set-Content -Path $path -Value $content -Encoding UTF8
         
         $check = Get-Content -Path $path -Raw
@@ -36,7 +36,7 @@ jobs:
             exit 1
         }
         
-        Write-Host "Success: Key was perfectly injected into Form1.cs!"
+        Write-Host "Success: Magic!"
 
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1.1
@@ -78,7 +78,10 @@ jobs:
           <Var name='OptimizeMethods' value='true' />
           <Var name='SuppressIldasm' value='true' />
           
-          <Module file='`$(InPath)\r6random.exe' />
+          <Module file='`$(InPath)\r6random.exe'>
+            <SkipType name="r6random.Form1" />
+            <SkipType name="r6random.Form2" />
+            </Module>
         </Obfuscator>
         "@
         Set-Content -Path obfuscar.xml -Value $xml -Encoding UTF8
