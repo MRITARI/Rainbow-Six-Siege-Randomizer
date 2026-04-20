@@ -105,9 +105,9 @@ jobs:
       with:
         name: R6Random-Release
         path: |
-          r6random/bin/Release/Obfuscated/
-          r6random/bin/Release/*.dll
-          r6random/bin/Release/*.config
-          r6random/bin/Release/Res/
-          !r6random/bin/Release/Obfuscated/*.xml
-          !r6random/bin/Release/Obfuscated/*.pdb
+          r6random/bin/Release/
+          !r6random/bin/Release/**/*.pdb
+          !r6random/bin/Release/**/*.xml
+          !r6random/bin/Release/Mapping.txt
+          !r6random/bin/Release/obfuscar.xml
+          !r6random/bin/Release/Obfuscated/
