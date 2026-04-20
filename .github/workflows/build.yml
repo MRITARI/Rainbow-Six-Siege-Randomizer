@@ -72,7 +72,7 @@ jobs:
           <AssemblySearchPath path='$netFrameworkPath' />
           <AssemblySearchPath path='r6random\bin\Release' />
 
-          <Var name='KeepPublicApi' value='false' />
+          <Var name='KeepPublicApi' value='true' />
           <Var name='HidePrivateApi' value='true' />
           <Var name='HideStrings' value='true' />
           <Var name='OptimizeMethods' value='true' />
