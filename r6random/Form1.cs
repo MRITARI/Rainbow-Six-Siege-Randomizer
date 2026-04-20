@@ -22,7 +22,7 @@ namespace r6random
         private const string GitHubRepoName = "Rainbow-Six-Siege-Randomizer";
         private static readonly Version CurrentVersion = new Version("1.3.0");
         private static readonly HttpClient client = new HttpClient();
-        private const string ApiKey = "YOUR_GITHUB_SECRET_HERE";
+        private const string ApiKey = "ftm04857ht08745htjf";
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
         private const int WM_SYSKEYDOWN = 0x0104;
@@ -283,7 +283,7 @@ namespace r6random
             {
                 try
                 {
-                    if (ApiKey.Contains("YOUR_GITHUB") || string.IsNullOrWhiteSpace(ApiKey))
+                    if (ApiKey.Contains("ftm04857ht087") || string.IsNullOrWhiteSpace(ApiKey))
                     {
                         MessageBox.Show("DEBUG: The API Key was NOT injected! The string is still the placeholder. Check your GitHub Secrets.", "API Skipped", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
