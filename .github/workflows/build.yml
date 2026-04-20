@@ -94,7 +94,12 @@ jobs:
     - name: Run Obfuscation
       run: obfuscar.console obfuscar.xml
     # -----------------------------
-
+    - name: Cleanup and Flatten Folders
+      shell: pwsh
+      run: |
+        Move-Item -Path "r6random/bin/Release/Obfuscated/r6random.exe" -Destination "r6random/bin/Release/r6random.exe" -Force
+        Remove-Item -Path "r6random/bin/Release/Obfuscated" -Recurse -Force
+        Write-Host "Success: Folder flattened!"
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
       with:
