@@ -81,7 +81,11 @@ jobs:
           <Module file='`$(InPath)\r6random.exe'>
             <SkipType name="r6random.Form1" />
             <SkipType name="r6random.Form2" />
-            </Module>
+            
+            <SkipType name="r6random.OperatorInfo" />
+            <SkipType name="r6random.Weapon" />
+            <SkipType name="r6random.Gadget" />
+          </Module>
         </Obfuscator>
         "@
         Set-Content -Path obfuscar.xml -Value $xml -Encoding UTF8
