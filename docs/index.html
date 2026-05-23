@@ -1,295 +1,111 @@
-<!DOCTYPE html> 
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R6 Randomizer</title>
+    <title>R6 Randomizer | MRITARI</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script> 
-        /* This page is completely vibe-coded because I'm terrible at HTML/CSS, but it's neat as hell. */
-
-        /* Custom Tailwind Configuration */
+    <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'neon-red': '#FF3914', /* Bright Red */
-                        'dark-red': '#B02A00', /* Darker Red */
-                        'dark-bg': '#0D1117',
-                        'card-bg': '#161B22',
-                        'subtle-text': '#C9D1D9', /* Lighter text for contrast */
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
+                        primary: '#c8a065',
+                        accent: '#9e231b',
+                        bg: '#080808'
+                    }
                 }
             }
         }
     </script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: #0D1117;
-            color: #E6EDF3;
-            font-family: 'Inter', sans-serif;
-            transition: all 0.3s ease-in-out;
-            min-height: 100vh;
-        }
-
-        /* Neon Glow Effect on text and borders - RED */
-        .neon-glow-red {
-            text-shadow: 0 0 5px #FF3914, 0 0 10px #FF3914;
-        }
-        .border-neon-red {
-            border-color: #FF3914;
-            box-shadow: 0 0 8px #FF3914;
-        }
-        .bg-neon-hover-red:hover {
-            background-color: #FF3914;
-            color: #0D1117;
-            box-shadow: 0 0 15px rgba(255, 57, 20, 0.8);
-            transform: scale(1.05);
-        }
-
-        /* Card Hover Effect */
-        .content-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255, 57, 20, 0.2), 0 0 15px rgba(255, 57, 20, 0.5);
-            border-color: #FF3914;
-        }
-
-        /* Section Fade-in Animation (From website.html) */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .fade-in.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Details (Accordion) Styling for Red Theme */
-        details summary {
-            font-size: 1.25rem;
-            cursor: pointer;
-            color: #FF3914; /* Neon Red for Summary */
-            outline: none;
-            font-weight: bold;
-            padding: 0.5rem 0;
-            transition: color 0.3s;
-        }
-        details summary:hover {
-            color: #B02A00; /* Dark Red on hover */
-        }
-        details[open] {
-            border-color: #FF3914;
-            box-shadow: 0 0 15px rgba(255, 57, 20, 0.4);
-        }
-        details[open] summary {
-             color: #B02A00;
-        }
-        details ul {
-             list-style-type: disc;
-             margin-left: 1.5rem;
-             padding-left: 0;
-        }
-        details h3 {
-            color: #FF3914;
-            font-size: 1.125rem;
-            font-weight: bold;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-        }
-        .badge-img {
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-    </style>
 </head>
-<body class="bg-dark-bg p-4 sm:p-8">
+<body class="bg-bg text-gray-400 font-sans leading-relaxed selection:bg-accent selection:text-white">
 
-    <div class="max-w-4xl mx-auto space-y-16">
+    <nav class="fixed w-full border-b border-accent/30 bg-bg/90 backdrop-blur-md z-50 py-4">
+        <div class="max-w-4xl mx-auto px-6 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-3 font-bold tracking-widest text-primary hover:text-white transition-colors">
+                MRITARI
+            </a>
+            <div class="space-x-8 text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+                <a href="/#projects" class="hover:text-white transition-colors">Back to Projects</a>
+            </div>
+        </div>
+    </nav>
 
-        <header id="header" class="text-center pt-8 fade-in">
-            <img src="https://raw.githubusercontent.com/MRITARI/Rainbow-Six-Siege-Randomizer/refs/heads/master/images/banner.png" alt="Rainbow Six Siege Randomizer Banner"
-                class="max-w-full rounded-xl mx-auto border-4 border-neon-red shadow-xl" width="800" height="200">
-            <h1 class="text-4xl sm:text-6xl font-extrabold mt-6 neon-glow-red">R6 RANDOMIZER</h1>
-            <p class="text-subtle-text mt-2 text-lg">A Random Operator and Loadout Utility for Rainbow Six Siege</p>
+    <main class="max-w-3xl mx-auto pt-32 px-6 pb-20">
+        
+        <header class="mb-16">
+            <h1 class="text-4xl font-semibold tracking-tighter text-primary mb-2">R6 RANDOMIZER</h1>
+            <p class="text-gray-500 uppercase tracking-[0.2em] text-[10px]">Random Operator and Loadout Utility</p>
         </header>
 
-        <section id="intro" class="fade-in" style="transition-delay: 0.2s;">
-            <h2 class="text-2xl sm:text-3xl text-neon-red font-bold hover:text-dark-red transition-colors duration-300">OVERVIEW</h2>
-            <div class="bg-card-bg p-6 sm:p-8 rounded-xl border border-gray-700 shadow-xl">
-                <p class="text-lg text-subtle-text leading-relaxed">The R6 Randomizer is your go-to companion for Rainbow Six Siege, helping you pick a random operator for Attackers or Defenders. It’s a quick way to keep your gameplay fresh and unpredictable, with full control over which operators are included.</p>
-                <div class="flex justify-center space-x-6 mt-6">
-                    <a href="https://github.com/MRITARI" target="_blank" class="text-neon-red font-bold hover:text-dark-red transition-colors duration-300 flex items-center">
-                        <i data-lucide="github" class="w-5 h-5 mr-1"></i> GitHub
-                    </a>
-                    <a href="https://github.com/MRITARI/Rainbow-Six-Siege-Randomizer" target="_blank" class="text-neon-red font-bold hover:text-dark-red transition-colors duration-300 flex items-center">
-                        <i data-lucide="code" class="w-5 h-5 mr-1"></i> Repository
-                    </a>
+        <section class="mb-16">
+            <h2 class="text-primary uppercase tracking-[0.2em] mb-6 text-[12px] font-bold">Overview</h2>
+            <p class="text-sm">The R6 Randomizer is your go-to companion for Rainbow Six Siege, helping you pick a random operator for Attackers or Defenders. It’s a quick way to keep your gameplay fresh and unpredictable, with full control over which operators are included.</p>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-primary uppercase tracking-[0.2em] mb-6 text-[12px] font-bold">Downloads</h2>
+            <div class="flex flex-wrap gap-4">
+                <img src="https://img.shields.io/github/downloads/mritari/Rainbow-Six-Siege-Randomizer/total?style=for-the-badge" alt="Total Downloads">
+                <a href="https://github.com/mritari/Rainbow-Six-Siege-Randomizer/releases/latest"><img src="https://img.shields.io/github/v/release/mritari/Rainbow-Six-Siege-Randomizer?style=for-the-badge" alt="Latest Release"></a>
+            </div>
+        </section>
+
+        <section class="grid md:grid-cols-2 gap-4 mb-16">
+            <div class="border border-accent/30 p-6">
+                <h3 class="text-primary uppercase tracking-[0.2em] text-[10px] font-bold mb-4">Key Features</h3>
+                <ul class="text-[11px] space-y-2 list-disc list-inside text-gray-500">
+                    <li>Randomize operator for Attack/Defend.</li>
+                    <li>Persistent operator management (enabled/disabled).</li>
+                    <li>Loadout randomizer (Primaries, Secondaries, Gadgets).</li>
+                    <li>In-game overlay toggle (Shift + F5).</li>
+                </ul>
+            </div>
+            <div class="border border-accent/30 p-6">
+                <h3 class="text-primary uppercase tracking-[0.2em] text-[10px] font-bold mb-4">Troubleshooting</h3>
+                <ul class="text-[11px] space-y-2 list-disc list-inside text-gray-500">
+                    <li>Must enable at least one operator.</li>
+                    <li>Use borderless windowed mode for overlay.</li>
+                    <li>Verify hotkey is not bound elsewhere.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-primary uppercase tracking-[0.2em] mb-6 text-[12px] font-bold">Changelog</h2>
+            <div class="space-y-8 text-sm">
+                <div>
+                    <h3 class="text-primary font-bold">v1.3.0</h3>
+                    <p class="text-gray-500 text-xs">Year 11 S1, New Operator: Solid Snake, Live API integration, Auto-Caching.</p>
+                </div>
+                <div>
+                    <h3 class="text-primary font-bold">v1.2.1</h3>
+                    <p class="text-gray-500 text-xs">Added full loadout randomizer (attachments, grips, scopes).</p>
+                </div>
+                <div>
+                    <h3 class="text-primary font-bold">v1.2.0</h3>
+                    <p class="text-gray-500 text-xs">Year 10 S3, Leon "Denari" Winzenried, Overlay UI improvements.</p>
                 </div>
             </div>
         </section>
 
-        <main id="content" class="fade-in" style="transition-delay: 0.4s;">
-            <div class="grid md:grid-cols-2 gap-8">
+        <section class="mb-16 border-t border-accent/20 pt-8">
+            <h2 class="text-primary uppercase tracking-[0.2em] mb-4 text-[12px] font-bold">MIT License</h2>
+            <p class="text-[10px] text-gray-600 leading-relaxed">
+                Copyright (c) 2025 MRITARI<br><br>
+                Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:<br><br>
+                The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.<br><br>
+                THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+            </p>
+        </section>
 
-                <details open class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300">
-                    <summary class="tracking-wider">Downloads</summary>
-                    <div class="pt-4">
-                        <p><img src="https://img.shields.io/github/downloads/mritari/Rainbow-Six-Siege-Randomizer/total?style=for-the-badge" class="badge-img" alt="Total Downloads"></p>
-                        <p><a href="https://github.com/mritari/Rainbow-Six-Siege-Randomizer/releases/latest" target="_blank"><img src="https://img.shields.io/github/v/release/mritari/Rainbow-Six-Siege-Randomizer?style=for-the-badge" class="badge-img" alt="Latest Release Version"></a></p>
-                        <p><a href="https://github.com/mritari/Rainbow-Six-Siege-Randomizer/releases" target="_blank"><img src="https://img.shields.io/badge/View%20All-Releases-red?style=for-the-badge" class="badge-img" alt="View All Releases"></a></p>
-                    </div>
-                </details>
+        <div class="flex gap-4">
+            <a href="https://github.com/MRITARI/Rainbow-Six-Siege-Randomizer" class="border border-primary text-primary px-8 py-3 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-primary hover:text-black transition-all">
+                View Repository
+            </a>
+        </div>
 
-                <details class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300">
-                    <summary class="tracking-wider">Key Features</summary>
-                    <div class="pt-4 space-y-4">
-                        <h3 class="text-xl">Randomize Button</h3>
-                        <ul class="text-subtle-text space-y-2">
-                            <li>Click Randomize to select a random operator from your enabled list.</li>
-                            <li>Displays the chosen operator’s portrait and details in the main window.</li>
-                            <li>Prevents the same operator from being chosen again until you reset the app.</li>
-                        </ul>
-
-                        <h3 class="text-xl">Operator Management</h3>
-                        <ul class="text-subtle-text space-y-2">
-                            <li>Click Settings to view the full operator roster.</li>
-                            <li>Green border = enabled, Red border = disabled.</li>
-                            <li>Click an operator’s icon to toggle its status.</li>
-                            <li>Changes are saved automatically and persist between launches.</li>
-                        </ul>
-
-                        <h3 class="text-xl">In-Game Overlay</h3>
-                        <ul class="text-subtle-text space-y-2">
-                            <li>Press Shift + F5 to toggle the app’s visibility while playing.</li>
-                            <li>Designed to work best in borderless windowed mode — may not function in exclusive fullscreen.</li>
-                            <li>Overlay stays in the top-right corner and can be hidden when not needed.</li>
-                        </ul>
-                    </div>
-                </details>
-
-                <details open class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300 md:col-span-2">
-                    <summary class="tracking-wider">Changelog</summary>
-                    <div class="pt-4 space-y-6">
-                        <div class="border-b border-gray-700 pb-4">
-                            <h3>v1.3.0 (Latest)</h3>
-                            <ul class="text-subtle-text space-y-1">
-                                <li><strong>YEAR 11 SEASON 1 — Operation Silent Hunt</strong></li>
-                                <li>Added new operator: <strong>Solid Snake</strong></li>
-                                <li><strong>Live API Integration</strong>: The app now syncs directly with R6 Roulette to get the latest operator data.</li>
-                                <li><strong>Auto-Caching</strong>: Data is fetched once at startup and cached locally to ensure fast performance and offline support.</li>
-                            </ul>
-                        </div>
-                        <div class="border-b border-gray-700 pb-4">
-                            <h3>v1.2.1</h3>
-                            <ul class="text-subtle-text space-y-1">
-                                <li>Added loadout randomizer</li>
-                                <li>Primary weapons, Secondary weapons, Attachments, Grips, Scopes, Gadgets</li>
-                            </ul>
-                        </div>
-                        <div class="border-b border-gray-700 pb-4">
-                            <h3>v1.2.0</h3>
-                            <ul class="text-subtle-text space-y-1">
-                                <li>YEAR 10 SEASON 3 — Operation High Stakes</li>
-                                <li>Added new operator: Leon "Denari" Winzenried</li>
-                                <li>Transparent for an overlay-like look.</li>
-                                <li>Updated hotkey logic (Shift + F5 to toggle visibility).</li>
-                                <li>Note: This is not a true game overlay like Discord, Steam, or NVIDIA Overlays.</li>
-                                <li>Overlay now locks to the top-right corner of the screen.</li>
-                                <li>Minor UI improvements and bug fixes.</li>
-                            </ul>
-                        </div>
-                        <div class="border-b border-gray-700 pb-4">
-                            <h3>v1.1.1</h3>
-                            <ul class="text-subtle-text space-y-1">
-                                <li>Minor changes.</li>
-                            </ul>
-                        </div>
-                        <div class="border-b border-gray-700 pb-4">
-                            <h3>v1.1.0</h3>
-                            <ul class="text-subtle-text space-y-1">
-                                <li>Operators enabled/disabled state now saves automatically to a config file.</li>
-                                <li>When reopening the app, previously selected operators are restored.</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3>v1.0.0</h3>
-                            <ul class="text-subtle-text space-y-1">
-                                <li>Initial release.</li>
-                                <li>Randomize operators for Attackers or Defenders.</li>
-                                <li>Enable or disable operators in settings.</li>
-                                <li>Prevents duplicate picks until reset.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </details>
-
-                <details class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300">
-                    <summary class="tracking-wider">Screenshots</summary>
-                    <div class="pt-4 space-y-6">
-                        <h3>Main Window</h3>
-                        <img src="https://raw.githubusercontent.com/MRITARI/Rainbow-Six-Siege-Randomizer/refs/heads/master/images/ss.png" alt="Main Window Screenshot" class="rounded-lg border-2 border-gray-700">
-                        <h3>Settings Menu</h3>
-                        <img src="https://raw.githubusercontent.com/MRITARI/Rainbow-Six-Siege-Randomizer/refs/heads/master/images/ss2.png" alt="Settings Menu Screenshot" class="rounded-lg border-2 border-gray-700">
-                    </div>
-                </details>
-
-                <details class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300">
-                    <summary class="tracking-wider">Troubleshooting</summary>
-                    <div class="pt-4 space-y-6">
-                        <h3>No Operators Enabled</h3>
-                        <p class="text-subtle-text">You must enable at least one operator for the randomizer to work.</p>
-
-                        <h3>Image Not Found</h3>
-                        <p class="text-subtle-text">Missing images are shown with a red background and a tooltip displaying the missing file path.</p>
-
-                        <h3>Overlay Not Showing In-Game</h3>
-                        <ul class="text-subtle-text space-y-2">
-                            <li>Use borderless windowed mode for best results.</li>
-                            <li>Ensure the hotkey doesn’t conflict with another application.</li>
-                            <li>Some anti-cheat restrictions may prevent overlay display in exclusive fullscreen.</li>
-                        </ul>
-                    </div>
-                </details>
-
-            </div>
-        </main>
-
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Replaces lucide icon placeholders with actual SVG elements
-            lucide.createIcons();
-
-            const faders = document.querySelectorAll('.fade-in');
-
-            const appearOptions = {
-                threshold: 0,
-                rootMargin: "0px 0px -100px 0px" // Start fade-in 100px before reaching the bottom
-            };
-
-            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        return;
-                    } else {
-                        entry.target.classList.add('is-visible');
-                        appearOnScroll.unobserve(entry.target);
-                    }
-                });
-            }, appearOptions);
-
-            faders.forEach(fader => {
-                appearOnScroll.observe(fader);
-            });
-        });
-    </script>
+    </main>
 </body>
 </html>
