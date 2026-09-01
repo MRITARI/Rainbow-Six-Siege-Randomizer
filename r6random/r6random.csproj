@@ -304,10 +304,10 @@
     <Content Include="Res\Attackers\Sledge_ICON.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-	<Content Include="Res\Attackers\SolidSnake.png">
+    <Content Include="Res\Attackers\SolidSnake.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-	<Content Include="Res\Attackers\SolidSnake_ICON.png">
+    <Content Include="Res\Attackers\SolidSnake_ICON.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Res\Attackers\Striker.png">
@@ -488,6 +488,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Res\Defenders\Mute_ICON.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\Defenders\Noor.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Res\Defenders\Noor_ICON.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Res\Defenders\Oryx.png">
