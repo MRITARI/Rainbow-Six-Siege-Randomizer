@@ -113,6 +113,7 @@
             this.scopesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gadgetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox_77 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_78 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_3)).BeginInit();
@@ -191,6 +192,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_76)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_77)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_78)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox_1
@@ -900,12 +902,21 @@
             this.pictureBox_77.TabStop = false;
             this.pictureBox_77.Click += new System.EventHandler(this.pictureBox_78_Click);
             // 
+            // pictureBox_78
+            // 
+            this.pictureBox_78.Location = new System.Drawing.Point(910, 460);
+            this.pictureBox_78.Name = "pictureBox_78";
+            this.pictureBox_78.Size = new System.Drawing.Size(67, 65);
+            this.pictureBox_78.TabIndex = 84;
+            this.pictureBox_78.TabStop = false;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::r6random.Properties.Resources._907782_2;
             this.ClientSize = new System.Drawing.Size(1014, 572);
+            this.Controls.Add(this.pictureBox_78);
             this.Controls.Add(this.pictureBox_77);
             this.Controls.Add(this.pictureBox_76);
             this.Controls.Add(this.pictureBox_75);
@@ -1068,6 +1079,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_77)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_78)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1160,5 +1172,6 @@
         private System.Windows.Forms.ToolStripMenuItem scopesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gadgetsToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox_77;
+        private System.Windows.Forms.PictureBox pictureBox_78;
     }
 }

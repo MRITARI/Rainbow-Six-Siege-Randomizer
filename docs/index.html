@@ -52,43 +52,84 @@
             </div>
         </section>
 
-        <section class="grid md:grid-cols-2 gap-4 mb-16">
-            <div class="border border-accent/30 p-6">
-                <h3 class="text-primary uppercase tracking-[0.2em] text-[10px] font-bold mb-4">Key Features</h3>
-                <ul class="text-[11px] space-y-2 list-disc list-inside text-gray-500">
-                    <li>Randomize operator for Attack/Defend.</li>
-                    <li>Persistent operator management (enabled/disabled).</li>
-                    <li>Loadout randomizer (Primaries, Secondaries, Gadgets).</li>
-                    <li>In-game overlay toggle (Shift + F5).</li>
-                </ul>
-            </div>
-            <div class="border border-accent/30 p-6">
-                <h3 class="text-primary uppercase tracking-[0.2em] text-[10px] font-bold mb-4">Troubleshooting</h3>
-                <ul class="text-[11px] space-y-2 list-disc list-inside text-gray-500">
-                    <li>Must enable at least one operator.</li>
-                    <li>Use borderless windowed mode for overlay.</li>
-                    <li>Verify hotkey is not bound elsewhere.</li>
-                </ul>
-            </div>
-        </section>
+                <details open class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300 md:col-span-2">
+                    <summary class="tracking-wider">Changelog</summary>
+                    <div class="pt-4 space-y-6">
+                        <div class="border-b border-gray-700 pb-4">
+                            <h3>v1.3.1 (Latest)</h3>
+                            <ul class="text-subtle-text space-y-1">
+                                <li><strong>YEAR 11 SEASON 3 — Operation Split Fire</strong></li>
+                                <li>Added new operator: <strong>Noor</strong></li>
+                            </ul>
+                        </div>
+                        <div class="border-b border-gray-700 pb-4">
+                            <h3>v1.3.0</h3>
+                            <ul class="text-subtle-text space-y-1">
+                                <li><strong>YEAR 11 SEASON 1 — Operation Silent Hunt</strong></li>
+                                <li>Added new operator: <strong>Solid Snake</strong></li>
+                                <li><strong>Live API Integration</strong>: The app now syncs directly with R6 Roulette to get the latest operator data.</li>
+                                <li><strong>Auto-Caching</strong>: Data is fetched once at startup and cached locally to ensure fast performance and offline support.</li>
+                            </ul>
+                        </div>
+                        <div class="border-b border-gray-700 pb-4">
+                            <h3>v1.2.1</h3>
+                            <ul class="text-subtle-text space-y-1">
+                                <li>Added loadout randomizer</li>
+                                <li>Primary weapons, Secondary weapons, Attachments, Grips, Scopes, Gadgets</li>
+                            </ul>
+                        </div>
+                        <div class="border-b border-gray-700 pb-4">
+                            <h3>v1.2.0</h3>
+                            <ul class="text-subtle-text space-y-1">
+                                <li>YEAR 10 SEASON 3 — Operation High Stakes</li>
+                                <li>Added new operator: Leon "Denari" Winzenried</li>
+                                <li>Transparent for an overlay-like look.</li>
+                                <li>Updated hotkey logic (Shift + F5 to toggle visibility).</li>
+                                <li>Note: This is not a true game overlay like Discord, Steam, or NVIDIA Overlays.</li>
+                                <li>Overlay now locks to the top-right corner of the screen.</li>
+                                <li>Minor UI improvements and bug fixes.</li>
+                            </ul>
+                        </div>
+                        <div class="border-b border-gray-700 pb-4">
+                            <h3>v1.1.1</h3>
+                            <ul class="text-subtle-text space-y-1">
+                                <li>Minor changes.</li>
+                            </ul>
+                        </div>
+                        <div class="border-b border-gray-700 pb-4">
+                            <h3>v1.1.0</h3>
+                            <ul class="text-subtle-text space-y-1">
+                                <li>Operators enabled/disabled state now saves automatically to a config file.</li>
+                                <li>When reopening the app, previously selected operators are restored.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>v1.0.0</h3>
+                            <ul class="text-subtle-text space-y-1">
+                                <li>Initial release.</li>
+                                <li>Randomize operators for Attackers or Defenders.</li>
+                                <li>Enable or disable operators in settings.</li>
+                                <li>Prevents duplicate picks until reset.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
 
-        <section class="mb-16">
-            <h2 class="text-primary uppercase tracking-[0.2em] mb-6 text-[12px] font-bold">Changelog</h2>
-            <div class="space-y-8 text-sm">
-                <div>
-                    <h3 class="text-primary font-bold">v1.3.0</h3>
-                    <p class="text-gray-500 text-xs">Year 11 S1, New Operator: Solid Snake, Live API integration, Auto-Caching.</p>
-                </div>
-                <div>
-                    <h3 class="text-primary font-bold">v1.2.1</h3>
-                    <p class="text-gray-500 text-xs">Added full loadout randomizer (attachments, grips, scopes).</p>
-                </div>
-                <div>
-                    <h3 class="text-primary font-bold">v1.2.0</h3>
-                    <p class="text-gray-500 text-xs">Year 10 S3, Leon "Denari" Winzenried, Overlay UI improvements.</p>
-                </div>
-            </div>
-        </section>
+                <details class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300">
+                    <summary class="tracking-wider">Screenshots</summary>
+                    <div class="pt-4 space-y-6">
+                        <h3>Main Window</h3>
+                        <img src="https://raw.githubusercontent.com/MRITARI/Rainbow-Six-Siege-Randomizer/refs/heads/master/images/ss.png" alt="Main Window Screenshot" class="rounded-lg border-2 border-gray-700">
+                        <h3>Settings Menu</h3>
+                        <img src="https://raw.githubusercontent.com/MRITARI/Rainbow-Six-Siege-Randomizer/refs/heads/master/images/ss2.png" alt="Settings Menu Screenshot" class="rounded-lg border-2 border-gray-700">
+                    </div>
+                </details>
+
+                <details class="content-card p-6 rounded-xl bg-card-bg border-2 border-gray-700 transition-all duration-300">
+                    <summary class="tracking-wider">Troubleshooting</summary>
+                    <div class="pt-4 space-y-6">
+                        <h3>No Operators Enabled</h3>
+                        <p class="text-subtle-text">You must enable at least one operator for the randomizer to work.</p>
 
         <section class="mb-16 border-t border-accent/20 pt-8">
             <h2 class="text-primary uppercase tracking-[0.2em] mb-4 text-[12px] font-bold">MIT License</h2>

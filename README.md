@@ -19,6 +19,10 @@ Special thanks to the R6 Roulette team for providing API access to keep this too
 
 ## Changelog
 
+### v1.3.1 (Latest)
+- **YEAR 11 SEASON 3 — Operation Split Fire**
+- Added new operator: **Noor**
+
 ### v1.3.0 (Latest)
 - **YEAR 11 SEASON 1 — Operation Silent Hunt**
 - Added new operator: **Solid Snake**

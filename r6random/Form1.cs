@@ -20,7 +20,7 @@ namespace r6random
     {
         private const string GitHubRepoOwner = "MRITARI";
         private const string GitHubRepoName = "Rainbow-Six-Siege-Randomizer";
-        private static readonly Version CurrentVersion = new Version("1.3.0");
+        private static readonly Version CurrentVersion = new Version("1.3.1");
         private static readonly HttpClient client = new HttpClient();
         private const string ApiKey = "ftm04857ht08745htjf";
         private const int WH_KEYBOARD_LL = 13;
